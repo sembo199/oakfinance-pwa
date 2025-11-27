@@ -173,7 +173,55 @@ Color coding:
 - [ ] Budget categories
 - [ ] Receipt photo attachments
 - [ ] Recurring payment history
-- [ ] Dark mode theme
+- [x] Dark mode theme ✓ (Implemented)
+
+## Design System
+
+OakFinance uses a modern dark theme inspired by contemporary financial apps.
+
+### Color Palette
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Primary Green | `#5CB299` | Primary actions, income indicators, active states |
+| Coral Pink | `#F5A9B8` | Secondary accent |
+| Golden Yellow | `#E8C547` | Warnings, tertiary accent |
+| Danger Red | `#E57373` | Expenses, errors, negative values |
+| Background Dark | `#1A1A1A` | Main background |
+| Card Background | `#252525` | Card surfaces |
+| Input Background | `#333333` | Form inputs, segments |
+
+### Typography
+
+- **Font Family**: System fonts (SF Pro Display, Segoe UI, Roboto)
+- **Font Weights**: 400 (normal), 500 (medium), 600 (semibold), 700 (bold)
+- **Text Colors**: 
+  - Primary: `#FFFFFF`
+  - Secondary: `#B3B3B3`
+  - Muted: `#808080`
+
+### Spacing
+
+- Extra Small (xs): 4px
+- Small (sm): 8px
+- Medium (md): 16px
+- Large (lg): 24px
+- Extra Large (xl): 32px
+
+### Border Radius
+
+- Small: 8px
+- Medium: 12px
+- Large: 16px
+- Extra Large: 20px
+
+### Components
+
+- **Cards**: Dark backgrounds with subtle borders and shadows
+- **Buttons**: Rounded with primary green accent
+- **Inputs**: Dark backgrounds with focus ring highlights
+- **Badges**: Semi-transparent backgrounds with colored text
+- **Tabs**: Dark background with green active indicator
 
 ## License
 

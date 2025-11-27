@@ -1,21 +1,138 @@
+// =============================================================================
+// PAYMENT FORM MODAL STYLES
+// Modern dark theme modal design
+// =============================================================================
+
+// Color variables
+$oak-green: #5CB299;
+$oak-danger: #E57373;
+$oak-bg-dark: #1A1A1A;
+$oak-bg-card: #252525;
+$oak-bg-input: #333333;
+$oak-text-primary: #FFFFFF;
+$oak-text-secondary: #B3B3B3;
+$oak-text-muted: #808080;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+// Border radius
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// Form styling
+form.ion-padding {
+  padding: $spacing-md;
+}
+
+ion-item {
+  --background: #{$oak-bg-card};
+  --border-color: transparent;
+  --inner-border-width: 0;
+  --padding-start: #{$spacing-md};
+  --padding-end: #{$spacing-md};
+  --min-height: 70px;
+  margin-bottom: $spacing-md;
+  border-radius: $radius-md;
+  
+  ion-label[position="stacked"] {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $oak-text-muted;
+    margin-bottom: $spacing-sm;
+  }
+  
+  ion-input, ion-select {
+    --padding-top: #{$spacing-sm};
+    --padding-bottom: #{$spacing-sm};
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+// Segment control in modal
+ion-segment {
+  margin-top: $spacing-sm;
+  --background: #{$oak-bg-input};
+  border-radius: $radius-md;
+  padding: $spacing-xs;
+  
+  ion-segment-button {
+    --background: transparent;
+    --background-checked: #{$oak-green};
+    --color: #{$oak-text-secondary};
+    --color-checked: #000000;
+    --indicator-color: transparent;
+    --border-radius: #{$radius-md - 4px};
+    min-height: 40px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: none;
+  }
+}
+
+// Icon preview
 .icon-preview {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 0;
+  padding: $spacing-lg 0;
+  
+  ion-icon {
+    font-size: 3rem;
+    padding: $spacing-md;
+    border-radius: $radius-lg;
+    
+    &[color="success"] {
+      background: rgba($oak-green, 0.12);
+    }
+    
+    &[color="danger"] {
+      background: rgba($oak-danger, 0.12);
+    }
+  }
 }
 
+// Error text
 .error-text {
-  font-size: 12px;
-  padding: 4px 16px;
-  margin: 0;
+  font-size: 0.75rem;
+  padding: $spacing-xs $spacing-md;
+  margin: -$spacing-sm 0 $spacing-sm;
+  color: $oak-danger;
 }
 
+// Footer button
 ion-footer {
+  background: $oak-bg-dark;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  
   ion-toolbar {
-    --padding-start: 16px;
-    --padding-end: 16px;
-    --padding-top: 8px;
-    --padding-bottom: 8px;
+    --background: transparent;
+    --padding-start: #{$spacing-md};
+    --padding-end: #{$spacing-md};
+    --padding-top: #{$spacing-sm};
+    --padding-bottom: #{$spacing-sm};
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  ion-button {
+    --background: #{$oak-green};
+    --background-activated: #4a9b85;
+    --color: #000000;
+    --border-radius: #{$radius-md};
+    font-weight: 600;
+    font-size: 1rem;
+    height: 50px;
+    
+    &[disabled] {
+      --background: #{$oak-bg-input};
+      --color: #{$oak-text-muted};
+      opacity: 0.6;
+    }
   }
 }

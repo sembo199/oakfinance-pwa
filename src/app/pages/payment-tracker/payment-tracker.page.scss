@@ -1,39 +1,198 @@
+// =============================================================================
+// PAYMENT TRACKER PAGE STYLES
+// Modern dark theme with transaction-focused design
+// =============================================================================
+
+// Color variables
+$oak-green: #5CB299;
+$oak-danger: #E57373;
+$oak-yellow: #E8C547;
+$oak-coral: #F5A9B8;
+$oak-bg-dark: #1A1A1A;
+$oak-bg-card: #252525;
+$oak-bg-elevated: #2D2D2D;
+$oak-bg-input: #333333;
+$oak-text-primary: #FFFFFF;
+$oak-text-secondary: #B3B3B3;
+$oak-text-muted: #808080;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Border radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// =============================================================================
+// SUMMARY CARD - Hero style with gradient
+// =============================================================================
+
 .summary-card {
-  margin: 16px;
+  margin: $spacing-md;
+  border-radius: $radius-lg;
+  background: linear-gradient(145deg, $oak-bg-card 0%, #1f1f1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  ion-card-content {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 .summary-item {
   text-align: center;
+  padding: $spacing-sm 0;
 
   p {
-    margin: 0 0 8px 0;
-    font-size: 12px;
+    margin: 0 0 $spacing-sm 0;
+    font-size: 0.6875rem;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    color: $oak-text-muted;
   }
 
   h2 {
     margin: 0;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 }
 
 .income-text {
-  color: var(--ion-color-success);
+  color: $oak-green;
 }
 
 .expense-text {
-  color: var(--ion-color-danger);
+  color: $oak-danger;
 }
 
-.clickable-badge {
-  cursor: pointer;
-  &:hover {
-    opacity: 0.8;
+// =============================================================================
+// TRANSACTION LISTS
+// =============================================================================
+
+ion-list {
+  background: transparent;
+  padding: 0;
+  
+  ion-list-header {
+    padding: $spacing-lg $spacing-md $spacing-sm;
+    
+    ion-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      
+      &[color="danger"] {
+        color: $oak-danger;
+      }
+      
+      &[color="success"] {
+        color: $oak-green;
+      }
+    }
   }
 }
 
+// Transaction item styling
+ion-item-sliding {
+  margin: 0 $spacing-md $spacing-sm;
+  border-radius: $radius-md;
+  overflow: hidden;
+  
+  ion-item {
+    --background: #{$oak-bg-card};
+    --background-hover: #{$oak-bg-elevated};
+    --min-height: 68px;
+    --padding-start: #{$spacing-md};
+    --padding-end: #{$spacing-sm};
+    margin: 0;
+    border-radius: 0;
+    
+    ion-icon[slot="start"] {
+      font-size: 1.375rem;
+      padding: $spacing-sm + 2px;
+      border-radius: $radius-md;
+      margin-right: $spacing-md;
+      
+      &[color="success"] {
+        background: rgba($oak-green, 0.12);
+      }
+      
+      &[color="danger"] {
+        background: rgba($oak-danger, 0.12);
+      }
+    }
+    
+    ion-label {
+      h2 {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: $oak-text-primary;
+        margin-bottom: 2px;
+      }
+      
+      p {
+        font-size: 0.75rem;
+        color: $oak-text-secondary;
+      }
+    }
+  }
+}
+
+// Amount badges - clickable style
+.clickable-badge {
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-sm;
+  min-width: 75px;
+  text-align: center;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  &[color="success"] {
+    background: rgba($oak-green, 0.15);
+    color: $oak-green;
+  }
+  
+  &[color="danger"] {
+    background: rgba($oak-danger, 0.15);
+    color: $oak-danger;
+  }
+}
+
+// Checkbox styling
+ion-checkbox {
+  margin-left: $spacing-sm;
+  --size: 24px;
+  --border-radius: 6px;
+  --background: #{$oak-bg-input};
+  --background-checked: #{$oak-green};
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-checked: #{$oak-green};
+  --checkmark-color: #000000;
+}
+
+// Completed item styling
 .completed-item {
   opacity: 0.5;
   
@@ -43,82 +202,120 @@
   }
 }
 
+// Delete option styling
+ion-item-options {
+  ion-item-option[color="danger"] {
+    --background: #{$oak-danger};
+    --color: #000000;
+    min-width: 70px;
+    
+    ion-icon {
+      font-size: 1.375rem;
+    }
+  }
+}
+
+// =============================================================================
+// EMPTY STATE
+// =============================================================================
+
 .empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 80px $spacing-lg;
   text-align: center;
 
   ion-icon {
-    font-size: 80px;
-    margin-bottom: 16px;
+    font-size: 100px;
+    color: $oak-text-muted;
+    margin-bottom: $spacing-lg;
+    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.03);
+    padding: $spacing-lg;
+    border-radius: 50%;
   }
 
   p {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
-    margin: 8px 0;
+    color: $oak-text-primary;
+    margin: $spacing-sm 0;
   }
 
   ion-text p {
-    font-size: 14px;
-    margin: 4px 0;
+    font-size: 0.875rem;
+    color: $oak-text-secondary;
+    margin: $spacing-sm 0 0;
+    max-width: 250px;
+    line-height: 1.5;
   }
 }
 
+// =============================================================================
+// FORECAST FOOTER - Modern glass-like design
+// =============================================================================
+
 .forecast-footer {
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  background: $oak-bg-card;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-card {
   margin: 0;
   box-shadow: none;
+  background: transparent;
+  
+  ion-card-content {
+    padding: $spacing-md;
+  }
 }
 
 .balance-input-wrapper {
   .balance-label {
     display: block;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 0.6875rem;
+    font-weight: 700;
     text-transform: uppercase;
-    color: var(--ion-color-medium);
-    margin-bottom: 8px;
+    letter-spacing: 0.75px;
+    color: $oak-text-muted;
+    margin-bottom: $spacing-sm;
   }
 
   .balance-input-container {
     display: flex;
     align-items: center;
-    background: var(--ion-color-light);
-    border-radius: 12px;
-    padding: 12px 16px;
+    background: $oak-bg-input;
+    border-radius: $radius-md;
+    padding: $spacing-md;
     border: 2px solid transparent;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
     &:focus-within {
-      border-color: var(--ion-color-primary);
-      box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.2);
-      background: var(--ion-background-color);
+      border-color: $oak-green;
+      background: $oak-bg-elevated;
+      box-shadow: 0 0 0 4px rgba($oak-green, 0.1);
     }
 
     .currency-prefix {
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: 700;
-      color: var(--ion-color-primary);
-      margin-right: 8px;
+      color: $oak-green;
+      margin-right: $spacing-sm;
     }
 
     .balance-input {
       flex: 1;
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: 600;
       --padding-start: 0;
       --padding-end: 0;
       --padding-top: 0;
       --padding-bottom: 0;
       --background: transparent;
+      color: $oak-text-primary;
 
       &::part(native) {
         padding: 0;
@@ -129,48 +326,70 @@
 
 .forecast-display {
   text-align: center;
+  padding: $spacing-xs 0;
 
   .forecast-label {
-    margin: 0 0 4px 0;
-    font-size: 12px;
+    margin: 0 0 $spacing-xs 0;
+    font-size: 0.6875rem;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    color: $oak-text-muted;
   }
 
   .forecast-amount {
-    margin: 4px 0;
-    font-size: 24px;
+    margin: $spacing-xs 0;
+    font-size: 1.75rem;
     font-weight: 700;
+    letter-spacing: -0.5px;
   }
 
   .forecast-details {
-    margin: 4px 0 0 0;
-    font-size: 11px;
+    margin: $spacing-sm 0 0 0;
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: $spacing-md;
+    color: $oak-text-secondary;
 
     ion-icon {
-      font-size: 14px;
+      font-size: 0.875rem;
       margin-right: 2px;
     }
   }
 }
 
+// Forecast color states
 .success-text {
-  color: var(--ion-color-success);
+  color: $oak-green;
 }
 
 .warning-text {
-  color: var(--ion-color-warning);
+  color: $oak-yellow;
 }
 
 .danger-text {
-  color: var(--ion-color-danger);
+  color: $oak-danger;
 }
 
-// Position FAB above footer and tabs
+// =============================================================================
+// FAB POSITIONING
+// =============================================================================
+
 ion-fab {
-  margin-bottom: 200px; // Footer height (~150px) + tabs height (~50px)
+  margin-bottom: 200px; // Footer height + tabs height
+  
+  ion-fab-button {
+    --background: #{$oak-green};
+    --background-activated: #4a9b85;
+    --color: #000000;
+    --box-shadow: 0 4px 20px rgba($oak-green, 0.4);
+    width: 56px;
+    height: 56px;
+    
+    ion-icon {
+      font-size: 1.5rem;
+    }
+  }
 }

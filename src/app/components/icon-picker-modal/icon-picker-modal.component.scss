@@ -1,24 +1,81 @@
+// =============================================================================
+// ICON PICKER MODAL STYLES
+// Modern dark theme icon grid design
+// =============================================================================
+
+// Color variables
+$oak-green: #5CB299;
+$oak-bg-dark: #1A1A1A;
+$oak-bg-card: #252525;
+$oak-bg-input: #333333;
+$oak-text-primary: #FFFFFF;
+$oak-text-secondary: #B3B3B3;
+$oak-text-muted: #808080;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+
+// Border radius
+$radius-md: 12px;
+
 ion-grid {
-  padding: 8px;
+  padding: $spacing-md;
 }
 
 ion-col {
-  padding: 4px;
+  padding: $spacing-xs;
 }
 
 .icon-button {
-  height: 60px;
-  width: 60px;
+  height: 56px;
+  width: 56px;
   margin: 0;
+  --background: #{$oak-bg-card};
+  --background-hover: #{$oak-bg-input};
+  --background-activated: #{$oak-green};
+  --border-radius: #{$radius-md};
+  --color: #{$oak-text-secondary};
+  
+  ion-icon {
+    font-size: 1.5rem;
+  }
+  
+  &.selected,
+  &:active {
+    --background: rgba($oak-green, 0.2);
+    --color: #{$oak-green};
+  }
 }
 
 .no-results {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 200px;
+  gap: $spacing-sm;
+  
+  ion-icon {
+    font-size: 3rem;
+    color: $oak-text-muted;
+    opacity: 0.5;
+  }
   
   p {
-    font-size: 16px;
+    font-size: 1rem;
+    color: $oak-text-secondary;
+    margin: 0;
   }
+}
+
+// Search bar styling in header
+ion-searchbar {
+  --background: #{$oak-bg-input};
+  --border-radius: #{$radius-md};
+  --placeholder-color: #{$oak-text-muted};
+  --icon-color: #{$oak-text-muted};
+  --color: #{$oak-text-primary};
+  padding: $spacing-sm $spacing-md;
 }

@@ -1,10 +1,7 @@
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
+ * OakFinance PWA - Modern Dark Theme
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
@@ -25,13 +22,485 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* Dark Mode - Always enabled for modern look */
+@import "@ionic/angular/css/palettes/dark.always.css";
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* =============================================================================
+   OAKFINANCE CUSTOM GLOBAL STYLES
+   ============================================================================= */
+
+// Typography variables
+$font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Border radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+
+// Color variables (must match theme/variables.scss)
+$oak-green: #5CB299;
+$oak-coral: #F5A9B8;
+$oak-yellow: #E8C547;
+$oak-danger: #E57373;
+$oak-bg-dark: #1A1A1A;
+$oak-bg-card: #252525;
+$oak-bg-elevated: #2D2D2D;
+$oak-bg-input: #333333;
+$oak-text-primary: #FFFFFF;
+$oak-text-secondary: #B3B3B3;
+$oak-text-muted: #808080;
+
+/* =============================================================================
+   BASE STYLES
+   ============================================================================= */
+
+ion-content {
+  --background: #{$oak-bg-dark};
+}
+
+/* =============================================================================
+   TYPOGRAPHY
+   ============================================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-semibold;
+  color: $oak-text-primary;
+}
+
+p {
+  color: $oak-text-secondary;
+}
+
+/* =============================================================================
+   CARD STYLES
+   ============================================================================= */
+
+ion-card {
+  --background: #{$oak-bg-card};
+  border-radius: $radius-lg;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin: $spacing-md;
+  
+  ion-card-header {
+    padding: $spacing-md $spacing-md $spacing-sm;
+  }
+  
+  ion-card-content {
+    padding: $spacing-sm $spacing-md $spacing-md;
+  }
+  
+  ion-card-title {
+    font-size: 1.25rem;
+    font-weight: $font-weight-semibold;
+    color: $oak-text-primary;
+  }
+  
+  ion-card-subtitle {
+    font-size: 0.875rem;
+    color: $oak-text-secondary;
+    margin-top: $spacing-xs;
+  }
+}
+
+/* Modern summary/stats card style */
+.oak-stats-card {
+  background: linear-gradient(145deg, $oak-bg-card 0%, #1f1f1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =============================================================================
+   LIST STYLES
+   ============================================================================= */
+
+ion-list {
+  background: transparent;
+  padding: 0;
+  
+  ion-list-header {
+    font-size: 0.75rem;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: $spacing-md $spacing-md $spacing-sm;
+    color: $oak-text-muted;
+  }
+}
+
+ion-item {
+  --background: #{$oak-bg-card};
+  --background-hover: #{$oak-bg-elevated};
+  --background-activated: #{$oak-bg-elevated};
+  --border-color: transparent;
+  --inner-border-width: 0;
+  --padding-start: #{$spacing-md};
+  --padding-end: #{$spacing-md};
+  --min-height: 60px;
+  margin: 0 $spacing-md $spacing-sm;
+  border-radius: $radius-md;
+  
+  ion-label {
+    h2 {
+      font-weight: $font-weight-medium;
+      font-size: 1rem;
+      color: $oak-text-primary;
+      margin-bottom: 2px;
+    }
+    
+    p {
+      font-size: 0.8125rem;
+      color: $oak-text-secondary;
+    }
+  }
+  
+  ion-icon[slot="start"] {
+    font-size: 1.5rem;
+    margin-right: $spacing-md;
+    padding: $spacing-sm;
+    border-radius: $radius-sm;
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+// Swipe action styling
+ion-item-sliding {
+  margin: 0 $spacing-md $spacing-sm;
+  border-radius: $radius-md;
+  overflow: hidden;
+  
+  ion-item {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+ion-item-options {
+  border-radius: 0 $radius-md $radius-md 0;
+  
+  ion-item-option {
+    font-weight: $font-weight-medium;
+  }
+}
+
+/* =============================================================================
+   BADGES
+   ============================================================================= */
+
+ion-badge {
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  font-weight: $font-weight-semibold;
+  font-size: 0.875rem;
+  
+  &[color="success"] {
+    background: rgba($oak-green, 0.15);
+    color: $oak-green;
+  }
+  
+  &[color="danger"] {
+    background: rgba($oak-danger, 0.15);
+    color: $oak-danger;
+  }
+  
+  &[color="warning"] {
+    background: rgba($oak-yellow, 0.15);
+    color: $oak-yellow;
+  }
+  
+  &[color="primary"] {
+    background: rgba($oak-green, 0.15);
+    color: $oak-green;
+  }
+}
+
+/* =============================================================================
+   TOOLBAR & HEADER
+   ============================================================================= */
+
+ion-toolbar {
+  --background: #{$oak-bg-dark};
+  --border-width: 0;
+  --padding-top: $spacing-sm;
+  --padding-bottom: $spacing-sm;
+  
+  ion-title {
+    font-weight: $font-weight-semibold;
+    font-size: 1.125rem;
+    letter-spacing: -0.25px;
+  }
+}
+
+ion-header {
+  &::after {
+    display: none; // Remove bottom border/shadow
+  }
+}
+
+/* =============================================================================
+   SEGMENT CONTROL
+   ============================================================================= */
+
+ion-segment {
+  --background: #{$oak-bg-input};
+  border-radius: $radius-md;
+  padding: $spacing-xs;
+  margin: 0 $spacing-md;
+  
+  ion-segment-button {
+    --background: transparent;
+    --background-checked: #{$oak-green};
+    --color: #{$oak-text-secondary};
+    --color-checked: #000000;
+    --indicator-color: transparent;
+    --border-radius: #{$radius-sm};
+    --padding-top: #{$spacing-sm};
+    --padding-bottom: #{$spacing-sm};
+    min-height: 36px;
+    font-weight: $font-weight-medium;
+    font-size: 0.875rem;
+    text-transform: none;
+    letter-spacing: 0;
+    
+    &::part(indicator-background) {
+      background: transparent;
+    }
+  }
+}
+
+/* =============================================================================
+   TAB BAR
+   ============================================================================= */
+
+ion-tab-bar {
+  --background: #{$oak-bg-card};
+  --border: none;
+  height: 60px;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  
+  ion-tab-button {
+    --color: #{$oak-text-muted};
+    --color-selected: #{$oak-green};
+    
+    ion-icon {
+      font-size: 1.375rem;
+      margin-bottom: $spacing-xs;
+    }
+    
+    ion-label {
+      font-size: 0.6875rem;
+      font-weight: $font-weight-medium;
+      letter-spacing: 0.25px;
+    }
+    
+    &.tab-selected {
+      ion-icon {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/* =============================================================================
+   BUTTONS
+   ============================================================================= */
+
+ion-button {
+  --border-radius: #{$radius-md};
+  --padding-top: #{$spacing-md};
+  --padding-bottom: #{$spacing-md};
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0;
+  text-transform: none;
+  
+  &[expand="block"] {
+    margin: $spacing-md;
+  }
+}
+
+/* FAB Button */
+ion-fab-button {
+  --background: #{$oak-green};
+  --background-activated: #4a9b85;
+  --color: #000000;
+  --box-shadow: 0 4px 16px rgba($oak-green, 0.4);
+  
+  &:hover {
+    --box-shadow: 0 6px 20px rgba($oak-green, 0.5);
+  }
+}
+
+/* =============================================================================
+   INPUTS & FORMS
+   ============================================================================= */
+
+ion-input, ion-textarea, ion-select {
+  --background: #{$oak-bg-input};
+  --color: #{$oak-text-primary};
+  --placeholder-color: #{$oak-text-muted};
+  --padding-start: #{$spacing-md};
+  --padding-end: #{$spacing-md};
+  border-radius: $radius-md;
+}
+
+ion-checkbox {
+  --background: #{$oak-bg-input};
+  --background-checked: #{$oak-green};
+  --border-color: #{$oak-bg-elevated};
+  --border-color-checked: #{$oak-green};
+  --checkmark-color: #000000;
+  --size: 22px;
+  --border-radius: 6px;
+}
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+
+ion-footer {
+  background: $oak-bg-card;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  
+  &::before {
+    display: none; // Remove top border
+  }
+  
+  ion-toolbar {
+    --background: transparent;
+  }
+}
+
+/* =============================================================================
+   MODAL
+   ============================================================================= */
+
+ion-modal {
+  --background: #{$oak-bg-dark};
+  --border-radius: #{$radius-xl} #{$radius-xl} 0 0;
+  
+  ion-toolbar {
+    --background: #{$oak-bg-dark};
+  }
+  
+  ion-content {
+    --background: #{$oak-bg-dark};
+  }
+}
+
+/* =============================================================================
+   EMPTY STATE
+   ============================================================================= */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl * 2 $spacing-lg;
+  text-align: center;
+  
+  ion-icon {
+    font-size: 80px;
+    color: $oak-text-muted;
+    margin-bottom: $spacing-lg;
+    opacity: 0.5;
+  }
+  
+  p {
+    font-size: 1.125rem;
+    font-weight: $font-weight-medium;
+    color: $oak-text-primary;
+    margin: $spacing-sm 0;
+  }
+  
+  ion-text p {
+    font-size: 0.875rem;
+    color: $oak-text-secondary;
+    margin: $spacing-xs 0;
+  }
+}
+
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+
+.text-success {
+  color: $oak-green !important;
+}
+
+.text-danger {
+  color: $oak-danger !important;
+}
+
+.text-warning {
+  color: $oak-yellow !important;
+}
+
+.text-muted {
+  color: $oak-text-muted !important;
+}
+
+.text-secondary {
+  color: $oak-text-secondary !important;
+}
+
+.bg-card {
+  background: $oak-bg-card !important;
+}
+
+.bg-elevated {
+  background: $oak-bg-elevated !important;
+}
+
+/* Currency/Amount display helpers */
+.amount-positive {
+  color: $oak-green;
+  font-weight: $font-weight-semibold;
+  
+  &::before {
+    content: '+';
+  }
+}
+
+.amount-negative {
+  color: $oak-danger;
+  font-weight: $font-weight-semibold;
+  
+  &::before {
+    content: '-';
+  }
+}
+
+/* =============================================================================
+   ANIMATIONS
+   ============================================================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Subtle pulse animation for important values */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}

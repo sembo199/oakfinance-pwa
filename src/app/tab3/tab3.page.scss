@@ -1,23 +1,158 @@
+// =============================================================================
+// SETTINGS PAGE STYLES
+// Modern dark theme with organized sections
+// =============================================================================
+
+// Color variables
+$oak-green: #5CB299;
+$oak-bg-card: #252525;
+$oak-bg-elevated: #2D2D2D;
+$oak-text-primary: #FFFFFF;
+$oak-text-secondary: #B3B3B3;
+$oak-text-muted: #808080;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+// Border radius
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// Settings list styling
+ion-list {
+  background: transparent;
+  margin-bottom: $spacing-lg;
+  
+  ion-list-header {
+    padding: $spacing-lg $spacing-md $spacing-sm;
+    
+    ion-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+      color: $oak-text-muted;
+    }
+  }
+}
+
+ion-item {
+  --background: #{$oak-bg-card};
+  --background-hover: #{$oak-bg-elevated};
+  --background-activated: #{$oak-bg-elevated};
+  --min-height: 64px;
+  --padding-start: #{$spacing-md};
+  --padding-end: #{$spacing-md};
+  margin: 0 $spacing-md $spacing-sm;
+  border-radius: $radius-md;
+  
+  ion-icon[slot="start"] {
+    font-size: 1.25rem;
+    color: $oak-green;
+    margin-right: $spacing-md;
+    padding: $spacing-sm;
+    background: rgba($oak-green, 0.1);
+    border-radius: $radius-md;
+  }
+  
+  ion-label {
+    h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: $oak-text-primary;
+      margin-bottom: 2px;
+    }
+    
+    p {
+      font-size: 0.8125rem;
+      color: $oak-text-secondary;
+    }
+  }
+  
+  ion-note[slot="end"] {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $oak-green;
+    padding: $spacing-xs $spacing-sm;
+    background: rgba($oak-green, 0.1);
+    border-radius: $radius-md - 4px;
+  }
+}
+
+// Info section with how-to card
 .info-section {
-  margin-top: 24px;
+  margin-top: $spacing-md;
+  padding: 0 $spacing-md;
 
   ion-card {
     margin: 0;
+    background: $oak-bg-card;
+    border-radius: $radius-lg;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    ion-card-content {
+      padding: $spacing-lg;
+    }
   }
 
   h3 {
-    margin: 0 0 12px 0;
-    font-size: 16px;
+    margin: 0 0 $spacing-md 0;
+    font-size: 1rem;
     font-weight: 600;
+    color: $oak-text-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    
+    &::before {
+      content: '💡';
+      font-size: 1.125rem;
+    }
   }
 
   ol {
     margin: 0;
-    padding-left: 20px;
+    padding-left: $spacing-lg;
+    counter-reset: step-counter;
+    list-style: none;
 
     li {
-      margin-bottom: 8px;
-      line-height: 1.5;
+      margin-bottom: $spacing-md;
+      line-height: 1.6;
+      font-size: 0.875rem;
+      color: $oak-text-secondary;
+      position: relative;
+      padding-left: $spacing-sm;
+      counter-increment: step-counter;
+      
+      &::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: -$spacing-lg;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background: rgba($oak-green, 0.15);
+        color: $oak-green;
+        border-radius: 50%;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      strong, b {
+        color: $oak-text-primary;
+        font-weight: 500;
+      }
     }
   }
 }
