@@ -50,29 +50,37 @@
     <ion-list-header>
       <ion-label color="danger">{{ 'tracker.due' | translate }} ({{ groupedLogs.overdue.length }})</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let log of groupedLogs.overdue" [class.completed-item]="log.isCompleted">
-      <ion-icon 
-        [name]="log.iconName" 
-        slot="start" 
-        [color]="log.type === 'income' ? 'success' : 'danger'">
-      </ion-icon>
-      <ion-label>
-        <h2>{{ log.name }}</h2>
-        <p>Due: {{ log.dueDate | date:'MMM d' }}</p>
-      </ion-label>
-      <ion-badge 
-        slot="end" 
-        [color]="log.type === 'income' ? 'success' : 'danger'"
-        (click)="editAmount(log)"
-        class="clickable-badge">
-        {{ log.amount | appCurrency }}
-      </ion-badge>
-      <ion-checkbox 
-        slot="end" 
-        [checked]="log.isCompleted"
-        (ionChange)="toggleCompleted(log)">
-      </ion-checkbox>
-    </ion-item>
+    <ion-item-sliding *ngFor="let log of groupedLogs.overdue">
+      <ion-item [class.completed-item]="log.isCompleted">
+        <ion-icon 
+          [name]="log.iconName" 
+          slot="start" 
+          [color]="log.type === 'income' ? 'success' : 'danger'">
+        </ion-icon>
+        <ion-label>
+          <h2>{{ log.name }}</h2>
+          <p>Due: {{ log.dueDate | date:'MMM d' }}</p>
+        </ion-label>
+        <ion-badge 
+          slot="end" 
+          [color]="log.type === 'income' ? 'success' : 'danger'"
+          (click)="editAmount(log)"
+          class="clickable-badge">
+          {{ log.amount | appCurrency }}
+        </ion-badge>
+        <ion-checkbox 
+          slot="end" 
+          [checked]="log.isCompleted"
+          (ionChange)="toggleCompleted(log)">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmDeleteLog(log)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <!-- Upcoming -->
@@ -80,29 +88,37 @@
     <ion-list-header>
       <ion-label>{{ 'tracker.pending' | translate }} ({{ groupedLogs.upcoming.length }})</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let log of groupedLogs.upcoming" [class.completed-item]="log.isCompleted">
-      <ion-icon 
-        [name]="log.iconName" 
-        slot="start" 
-        [color]="log.type === 'income' ? 'success' : 'danger'">
-      </ion-icon>
-      <ion-label>
-        <h2>{{ log.name }}</h2>
-        <p>Due: {{ log.dueDate | date:'MMM d' }}</p>
-      </ion-label>
-      <ion-badge 
-        slot="end" 
-        [color]="log.type === 'income' ? 'success' : 'danger'"
-        (click)="editAmount(log)"
-        class="clickable-badge">
-        {{ log.amount | appCurrency }}
-      </ion-badge>
-      <ion-checkbox 
-        slot="end" 
-        [checked]="log.isCompleted"
-        (ionChange)="toggleCompleted(log)">
-      </ion-checkbox>
-    </ion-item>
+    <ion-item-sliding *ngFor="let log of groupedLogs.upcoming">
+      <ion-item [class.completed-item]="log.isCompleted">
+        <ion-icon 
+          [name]="log.iconName" 
+          slot="start" 
+          [color]="log.type === 'income' ? 'success' : 'danger'">
+        </ion-icon>
+        <ion-label>
+          <h2>{{ log.name }}</h2>
+          <p>Due: {{ log.dueDate | date:'MMM d' }}</p>
+        </ion-label>
+        <ion-badge 
+          slot="end" 
+          [color]="log.type === 'income' ? 'success' : 'danger'"
+          (click)="editAmount(log)"
+          class="clickable-badge">
+          {{ log.amount | appCurrency }}
+        </ion-badge>
+        <ion-checkbox 
+          slot="end" 
+          [checked]="log.isCompleted"
+          (ionChange)="toggleCompleted(log)">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmDeleteLog(log)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <!-- Completed -->
@@ -110,29 +126,37 @@
     <ion-list-header>
       <ion-label color="success">{{ 'tracker.completed' | translate }} ({{ groupedLogs.completed.length }})</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let log of groupedLogs.completed" class="completed-item">
-      <ion-icon 
-        [name]="log.iconName" 
-        slot="start" 
-        [color]="log.type === 'income' ? 'success' : 'danger'">
-      </ion-icon>
-      <ion-label>
-        <h2>{{ log.name }}</h2>
-        <p>Completed: {{ log.completedDate | date:'MMM d' }}</p>
-      </ion-label>
-      <ion-badge 
-        slot="end" 
-        [color]="log.type === 'income' ? 'success' : 'danger'"
-        (click)="editAmount(log)"
-        class="clickable-badge">
-        {{ log.amount | appCurrency }}
-      </ion-badge>
-      <ion-checkbox 
-        slot="end" 
-        [checked]="log.isCompleted"
-        (ionChange)="toggleCompleted(log)">
-      </ion-checkbox>
-    </ion-item>
+    <ion-item-sliding *ngFor="let log of groupedLogs.completed">
+      <ion-item class="completed-item">
+        <ion-icon 
+          [name]="log.iconName" 
+          slot="start" 
+          [color]="log.type === 'income' ? 'success' : 'danger'">
+        </ion-icon>
+        <ion-label>
+          <h2>{{ log.name }}</h2>
+          <p>Completed: {{ log.completedDate | date:'MMM d' }}</p>
+        </ion-label>
+        <ion-badge 
+          slot="end" 
+          [color]="log.type === 'income' ? 'success' : 'danger'"
+          (click)="editAmount(log)"
+          class="clickable-badge">
+          {{ log.amount | appCurrency }}
+        </ion-badge>
+        <ion-checkbox 
+          slot="end" 
+          [checked]="log.isCompleted"
+          (ionChange)="toggleCompleted(log)">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmDeleteLog(log)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <div *ngIf="allLogs.length === 0" class="empty-state">

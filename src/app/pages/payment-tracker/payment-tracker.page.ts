@@ -187,6 +187,30 @@ export class PaymentTrackerPage implements OnInit {
     await alert.present();
   }
 
+  async confirmDeleteLog(log: PaymentLog) {
+    const alert = await this.alertCtrl.create({
+      header: 'Delete Payment',
+      message: `Are you sure you want to delete "${log.name}"?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: async () => {
+            await this.paymentLogService.delete(log.id);
+            await this.loadPaymentLogs();
+            this.calculateForecast();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   async onBalanceChange() {
     await this.balanceService.setBalanceForPeriod(this.currentPeriod, this.currentBalance);
     this.calculateForecast();
