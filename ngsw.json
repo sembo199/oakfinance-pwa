@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1764241746038,
+  "timestamp": 1764242620958,
   "index": "/oakfinance-pwa/index.html",
   "assetGroups": [
     {
@@ -172,7 +172,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/oakfinance-pwa/assets/icon/favicon.png": "7798b8e0eb61d7375c245af78bbf5c916932bf13",
+    "/oakfinance-pwa/assets/icon/favicon.png": "e7d0e9939ecca92f3f10a55959fe1821fa6167a4",
     "/oakfinance-pwa/assets/shapes.svg": "5413e95adabcb2cb639970051f55e0ddb64ace53",
     "/oakfinance-pwa/chunk-25EDEHN3.js": "9168a64dfddcafbfd34ed9c65ee2ccb035418c47",
     "/oakfinance-pwa/chunk-2LM7YSQJ.js": "a85af10d2435d2edc5511fe227c7155ae930f245",
@@ -311,7 +311,7 @@
     "/oakfinance-pwa/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
     "/oakfinance-pwa/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
     "/oakfinance-pwa/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
-    "/oakfinance-pwa/index.html": "e2e68f152651b76554f9990d14a38955826bd279",
+    "/oakfinance-pwa/index.html": "2b665fd64d354d9052ed704d540659eca9825f8e",
     "/oakfinance-pwa/main-QPRRNGKI.js": "a729e23741f4b43836c990c536f570110bffa07a",
     "/oakfinance-pwa/manifest.webmanifest": "f3ddbda1f942ccfecb11dfcaa1f301a3c164c6e0",
     "/oakfinance-pwa/polyfills-TDCRLYKL.js": "454f6db4230cc7ab61b24fe465dcc92bf041737d",
