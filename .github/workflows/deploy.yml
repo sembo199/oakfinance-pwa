@@ -19,14 +19,30 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Run unit tests
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+
       - name: Build application
         run: npm run build -- --configuration production
+
+      - name: Run Lighthouse CI for PWA validation
+        run: npx lhci autorun --collect.url=https://github.com/sembo199/oakfinance-pwa --collect.numberOfRuns=3
 
       - name: Add .nojekyll file
         run: touch www/.nojekyll
@@ -40,3 +56,37 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./www
           cname: false
+
+  bundle-size-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update version and changelog
+        run: npm run release
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "chore(release): update version and changelog"
+          git push --follow-tags
+
+      - name: Comment bundle size diff on PRs
+        uses: google/github-actions-bundle-size@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          base_ref: master
+          build_command: npm run build -- --configuration production
