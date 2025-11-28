@@ -9,7 +9,19 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -47,6 +59,7 @@
     "@angular/language-service": "^20.0.0",
     "@capacitor/cli": "7.4.4",
     "@ionic/angular-toolkit": "^12.0.0",
+    "@lhci/cli": "^0.15.1",
     "@types/jasmine": "~5.1.0",
     "@types/uuid": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
@@ -62,7 +75,11 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.9.0"
+    "standard-version": "^9.5.0",
+    "typescript": "~5.9.0",
+    "webpack": "^5.103.0",
+    "webpack-bundle-analyzer": "^5.0.1",
+    "webpack-cli": "^6.0.1"
   },
   "description": "An Ionic project"
 }
