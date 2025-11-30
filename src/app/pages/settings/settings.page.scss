@@ -3,16 +3,16 @@
 // Modern dark theme with organized sections
 // =============================================================================
 
-@import "theme/colors";
+@use 'theme/variables' as *;
 
 // Settings list styling
 ion-list {
   background: transparent;
   margin-bottom: $spacing-lg;
-  
+
   ion-list-header {
     padding: $spacing-lg $spacing-md $spacing-sm;
-    
+
     ion-label {
       font-size: 0.75rem;
       font-weight: 700;
@@ -32,7 +32,7 @@ ion-item {
   --padding-end: #{$spacing-md};
   margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
-  
+
   ion-icon[slot="start"] {
     font-size: 1.25rem;
     color: $oak-green;
@@ -41,7 +41,7 @@ ion-item {
     background: rgba($oak-green, 0.1);
     border-radius: $radius-md;
   }
-  
+
   ion-label {
     h2 {
       font-size: 1rem;
@@ -49,13 +49,13 @@ ion-item {
       color: $oak-text-primary;
       margin-bottom: 2px;
     }
-    
+
     p {
       font-size: 0.8125rem;
       color: $oak-text-secondary;
     }
   }
-  
+
   ion-note[slot="end"] {
     font-size: 0.9375rem;
     font-weight: 600;
@@ -76,7 +76,7 @@ ion-item {
     background: $oak-bg-card;
     border-radius: $radius-lg;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    
+
     ion-card-content {
       padding: $spacing-lg;
     }
@@ -90,7 +90,7 @@ ion-item {
     display: flex;
     align-items: center;
     gap: $spacing-sm;
-    
+
     &::before {
       content: '💡';
       font-size: 1.125rem;
@@ -111,7 +111,7 @@ ion-item {
       position: relative;
       padding-left: $spacing-sm;
       counter-increment: step-counter;
-      
+
       &::before {
         content: counter(step-counter);
         position: absolute;
@@ -128,11 +128,11 @@ ion-item {
         align-items: center;
         justify-content: center;
       }
-      
+
       &:last-child {
         margin-bottom: 0;
       }
-      
+
       strong, b {
         color: $oak-text-primary;
         font-weight: 500;

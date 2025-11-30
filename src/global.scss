@@ -6,31 +6,32 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+// Import theme modules using @use
+@use "theme/variables" as *;
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@use "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+@use "@ionic/angular/css/normalize.css";
+@use "@ionic/angular/css/structure.css";
+@use "@ionic/angular/css/typography.css";
+@use "@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+@use "@ionic/angular/css/padding.css";
+@use "@ionic/angular/css/float-elements.css";
+@use "@ionic/angular/css/text-alignment.css";
+@use "@ionic/angular/css/text-transformation.css";
+@use "@ionic/angular/css/flex-utils.css";
 
 /* Dark Mode - Always enabled for modern look */
-@import "@ionic/angular/css/palettes/dark.always.css";
+@use "@ionic/angular/css/palettes/dark.always.css";
 
 /* =============================================================================
    OAKFINANCE CUSTOM GLOBAL STYLES
    ============================================================================= */
 
-// Import shared color variables from theme
-@import "theme/colors";
+
 
 // Typography variables
 $font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -69,21 +70,21 @@ ion-card {
   border-radius: $radius-lg;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   margin: $spacing-md;
-  
+
   ion-card-header {
     padding: $spacing-md $spacing-md $spacing-sm;
   }
-  
+
   ion-card-content {
     padding: $spacing-sm $spacing-md $spacing-md;
   }
-  
+
   ion-card-title {
     font-size: 1.25rem;
     font-weight: $font-weight-semibold;
     color: $oak-text-primary;
   }
-  
+
   ion-card-subtitle {
     font-size: 0.875rem;
     color: $oak-text-secondary;
@@ -93,7 +94,7 @@ ion-card {
 
 /* Modern summary/stats card style */
 .oak-stats-card {
-  background: linear-gradient(145deg, $oak-bg-card 0%, #1f1f1f 100%);
+  background: linear-gradient(145deg, $oak-bg-card 0%, $oak-bg-card-darker 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -104,7 +105,7 @@ ion-card {
 ion-list {
   background: transparent;
   padding: 0;
-  
+
   ion-list-header {
     font-size: 0.75rem;
     font-weight: $font-weight-bold;
@@ -126,7 +127,7 @@ ion-item {
   --min-height: 60px;
   margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
-  
+
   ion-label {
     h2 {
       font-weight: $font-weight-medium;
@@ -134,13 +135,13 @@ ion-item {
       color: $oak-text-primary;
       margin-bottom: 2px;
     }
-    
+
     p {
       font-size: 0.8125rem;
       color: $oak-text-secondary;
     }
   }
-  
+
   ion-icon[slot="start"] {
     font-size: 1.5rem;
     margin-right: $spacing-md;
@@ -155,7 +156,7 @@ ion-item-sliding {
   margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
   overflow: hidden;
-  
+
   ion-item {
     margin: 0;
     border-radius: 0;
@@ -164,7 +165,7 @@ ion-item-sliding {
 
 ion-item-options {
   border-radius: 0 $radius-md $radius-md 0;
-  
+
   ion-item-option {
     font-weight: $font-weight-medium;
   }
@@ -179,22 +180,22 @@ ion-badge {
   border-radius: $radius-sm;
   font-weight: $font-weight-semibold;
   font-size: 0.875rem;
-  
+
   &[color="success"] {
     background: rgba($oak-green, 0.15);
     color: $oak-green;
   }
-  
+
   &[color="danger"] {
     background: rgba($oak-danger, 0.15);
     color: $oak-danger;
   }
-  
+
   &[color="warning"] {
     background: rgba($oak-yellow, 0.15);
     color: $oak-yellow;
   }
-  
+
   &[color="primary"] {
     background: rgba($oak-green, 0.15);
     color: $oak-green;
@@ -210,7 +211,7 @@ ion-toolbar {
   --border-width: 0;
   --padding-top: $spacing-sm;
   --padding-bottom: $spacing-sm;
-  
+
   ion-title {
     font-weight: $font-weight-semibold;
     font-size: 1.125rem;
@@ -233,7 +234,7 @@ ion-segment {
   border-radius: $radius-md;
   padding: $spacing-xs;
   margin: 0 $spacing-md;
-  
+
   ion-segment-button {
     --background: transparent;
     --background-checked: #{$oak-green};
@@ -248,7 +249,7 @@ ion-segment {
     font-size: 0.875rem;
     text-transform: none;
     letter-spacing: 0;
-    
+
     &::part(indicator-background) {
       background: transparent;
     }
@@ -265,22 +266,22 @@ ion-tab-bar {
   height: 60px;
   padding-bottom: env(safe-area-inset-bottom);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
-  
+
   ion-tab-button {
     --color: #{$oak-text-muted};
     --color-selected: #{$oak-green};
-    
+
     ion-icon {
       font-size: 1.375rem;
       margin-bottom: $spacing-xs;
     }
-    
+
     ion-label {
       font-size: 0.6875rem;
       font-weight: $font-weight-medium;
       letter-spacing: 0.25px;
     }
-    
+
     &.tab-selected {
       ion-icon {
         transform: scale(1.1);
@@ -300,7 +301,7 @@ ion-button {
   font-weight: $font-weight-semibold;
   letter-spacing: 0;
   text-transform: none;
-  
+
   &[expand="block"] {
     margin: $spacing-md;
   }
@@ -309,10 +310,10 @@ ion-button {
 /* FAB Button */
 ion-fab-button {
   --background: #{$oak-green};
-  --background-activated: #4a9b85;
+  --background-activated: #{$oak-green-activated};
   --color: #000000;
   --box-shadow: 0 4px 16px rgba($oak-green, 0.4);
-  
+
   &:hover {
     --box-shadow: 0 6px 20px rgba($oak-green, 0.5);
   }
@@ -348,11 +349,11 @@ ion-checkbox {
 ion-footer {
   background: $oak-bg-card;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
-  
+
   &::before {
     display: none; // Remove top border
   }
-  
+
   ion-toolbar {
     --background: transparent;
   }
@@ -365,11 +366,11 @@ ion-footer {
 ion-modal {
   --background: #{$oak-bg-dark};
   --border-radius: #{$radius-xl} #{$radius-xl} 0 0;
-  
+
   ion-toolbar {
     --background: #{$oak-bg-dark};
   }
-  
+
   ion-content {
     --background: #{$oak-bg-dark};
   }
@@ -386,21 +387,21 @@ ion-modal {
   justify-content: center;
   padding: $spacing-xl * 2 $spacing-lg;
   text-align: center;
-  
+
   ion-icon {
     font-size: 80px;
     color: $oak-text-muted;
     margin-bottom: $spacing-lg;
     opacity: 0.5;
   }
-  
+
   p {
     font-size: 1.125rem;
     font-weight: $font-weight-medium;
     color: $oak-text-primary;
     margin: $spacing-sm 0;
   }
-  
+
   ion-text p {
     font-size: 0.875rem;
     color: $oak-text-secondary;
@@ -444,7 +445,7 @@ ion-modal {
 .amount-positive {
   color: $oak-green;
   font-weight: $font-weight-semibold;
-  
+
   &::before {
     content: '+';
   }
@@ -453,7 +454,7 @@ ion-modal {
 .amount-negative {
   color: $oak-danger;
   font-weight: $font-weight-semibold;
-  
+
   &::before {
     content: '-';
   }

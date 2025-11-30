@@ -3,7 +3,7 @@
 // Modern dark theme with card-based layout
 // =============================================================================
 
-@import "theme/colors";
+@use 'theme/variables' as *;
 
 // Override global item styles for this page
 ion-item {
@@ -11,22 +11,22 @@ ion-item {
   --background-hover: #{$oak-bg-elevated};
   --border-radius: #{$radius-md};
   margin-bottom: $spacing-sm;
-  
+
   ion-icon[slot="start"] {
     font-size: 1.5rem;
     padding: $spacing-sm + 2px;
     border-radius: $radius-md;
     margin-right: $spacing-md;
-    
+
     &[color="danger"] {
       background: rgba($oak-danger, 0.12);
     }
-    
+
     &[color="success"] {
       background: rgba($oak-green, 0.12);
     }
   }
-  
+
   ion-label {
     h2 {
       font-size: 1rem;
@@ -34,7 +34,7 @@ ion-item {
       color: $oak-text-primary;
       margin-bottom: 2px;
     }
-    
+
     p {
       font-size: 0.8125rem;
       color: $oak-text-secondary;
@@ -50,12 +50,12 @@ ion-badge {
   border-radius: $radius-md;
   min-width: 70px;
   text-align: center;
-  
+
   &[color="danger"] {
     background: rgba($oak-danger, 0.15);
     color: $oak-danger;
   }
-  
+
   &[color="success"] {
     background: rgba($oak-green, 0.15);
     color: $oak-green;
@@ -70,7 +70,7 @@ ion-badge {
   justify-content: center;
   padding: 80px $spacing-lg;
   text-align: center;
-  
+
   ion-icon {
     font-size: 100px;
     color: $oak-text-muted;
@@ -80,14 +80,14 @@ ion-badge {
     padding: $spacing-lg;
     border-radius: 50%;
   }
-  
+
   p {
     font-size: 1.125rem;
     font-weight: 500;
     color: $oak-text-primary;
     margin: $spacing-sm 0;
   }
-  
+
   ion-text p {
     font-size: 0.875rem;
     color: $oak-text-secondary;
@@ -113,7 +113,7 @@ ion-item-sliding {
   border-radius: $radius-md;
   overflow: hidden;
   margin: 0 $spacing-md $spacing-sm;
-  
+
   ion-item {
     margin: 0;
     border-radius: 0;
@@ -123,16 +123,16 @@ ion-item-sliding {
 ion-item-options {
   ion-item-option {
     min-width: 60px;
-    
+
     ion-icon {
       font-size: 1.375rem;
     }
-    
+
     &[color="primary"] {
       --background: #{$oak-green};
       --color: #000000;
     }
-    
+
     &[color="danger"] {
       --background: #{$oak-danger};
       --color: #000000;

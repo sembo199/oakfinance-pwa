@@ -3,7 +3,7 @@
 // Modern dark theme icon grid design
 // =============================================================================
 
-@import "theme/colors";
+@use 'theme/variables' as *;
 
 ion-grid {
   padding: $spacing-md;
@@ -22,11 +22,11 @@ ion-col {
   --background-activated: #{$oak-green};
   --border-radius: #{$radius-md};
   --color: #{$oak-text-secondary};
-  
+
   ion-icon {
     font-size: 1.5rem;
   }
-  
+
   &.selected,
   &:active {
     --background: rgba($oak-green, 0.2);
@@ -41,13 +41,13 @@ ion-col {
   align-items: center;
   height: 200px;
   gap: $spacing-sm;
-  
+
   ion-icon {
     font-size: 3rem;
     color: $oak-text-muted;
     opacity: 0.5;
   }
-  
+
   p {
     font-size: 1rem;
     color: $oak-text-secondary;

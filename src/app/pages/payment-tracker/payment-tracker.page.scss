@@ -3,7 +3,7 @@
 // Modern dark theme with transaction-focused design
 // =============================================================================
 
-@import "theme/colors";
+@use 'theme/variables' as *;
 
 // Layout heights for FAB positioning
 $footer-height: 140px;  // Forecast footer approximate height
@@ -20,7 +20,7 @@ $fab-offset: $footer-height + $tab-bar-height;
   background: linear-gradient(145deg, $oak-bg-card 0%, #1f1f1f 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  
+
   ion-card-content {
     padding: $spacing-lg $spacing-md;
   }
@@ -62,10 +62,10 @@ $fab-offset: $footer-height + $tab-bar-height;
 ion-list {
   background: transparent;
   padding: 0;
-  
+
   ion-list-header {
     padding: $spacing-lg $spacing-md $spacing-sm;
-    
+
     ion-label {
       font-size: 0.75rem;
       font-weight: 700;
@@ -74,11 +74,11 @@ ion-list {
       display: flex;
       align-items: center;
       gap: $spacing-sm;
-      
+
       &[color="danger"] {
         color: $oak-danger;
       }
-      
+
       &[color="success"] {
         color: $oak-green;
       }
@@ -91,7 +91,7 @@ ion-item-sliding {
   margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
   overflow: hidden;
-  
+
   ion-item {
     --background: #{$oak-bg-card};
     --background-hover: #{$oak-bg-elevated};
@@ -100,22 +100,22 @@ ion-item-sliding {
     --padding-end: #{$spacing-sm};
     margin: 0;
     border-radius: 0;
-    
+
     ion-icon[slot="start"] {
       font-size: 1.375rem;
       padding: $spacing-sm + 2px;
       border-radius: $radius-md;
       margin-right: $spacing-md;
-      
+
       &[color="success"] {
         background: rgba($oak-green, 0.12);
       }
-      
+
       &[color="danger"] {
         background: rgba($oak-danger, 0.12);
       }
     }
-    
+
     ion-label {
       h2 {
         font-size: 0.9375rem;
@@ -123,7 +123,7 @@ ion-item-sliding {
         color: $oak-text-primary;
         margin-bottom: 2px;
       }
-      
+
       p {
         font-size: 0.75rem;
         color: $oak-text-secondary;
@@ -142,20 +142,20 @@ ion-item-sliding {
   min-width: 75px;
   text-align: center;
   transition: all 0.2s ease;
-  
+
   &:hover {
     transform: scale(1.02);
   }
-  
+
   &:active {
     transform: scale(0.98);
   }
-  
+
   &[color="success"] {
     background: rgba($oak-green, 0.15);
     color: $oak-green;
   }
-  
+
   &[color="danger"] {
     background: rgba($oak-danger, 0.15);
     color: $oak-danger;
@@ -177,7 +177,7 @@ ion-checkbox {
 // Completed item styling
 .completed-item {
   opacity: 0.5;
-  
+
   ion-label h2,
   ion-label p {
     text-decoration: line-through;
@@ -190,7 +190,7 @@ ion-item-options {
     --background: #{$oak-danger};
     --color: #000000;
     min-width: 70px;
-    
+
     ion-icon {
       font-size: 1.375rem;
     }
@@ -249,7 +249,7 @@ ion-item-options {
   margin: 0;
   box-shadow: none;
   background: transparent;
-  
+
   ion-card-content {
     padding: $spacing-md;
   }
@@ -361,7 +361,7 @@ ion-item-options {
 
 ion-fab {
   margin-bottom: $fab-offset;
-  
+
   ion-fab-button {
     --background: #{$oak-green};
     --background-activated: #4a9b85;
@@ -369,7 +369,7 @@ ion-fab {
     --box-shadow: 0 4px 20px rgba($oak-green, 0.4);
     width: 56px;
     height: 56px;
-    
+
     ion-icon {
       font-size: 1.5rem;
     }

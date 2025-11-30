@@ -3,7 +3,7 @@
 // Modern dark theme modal design
 // =============================================================================
 
-@import "theme/colors";
+@use 'theme/variables' as *;
 
 // Form styling
 form.ion-padding {
@@ -19,7 +19,7 @@ ion-item {
   --min-height: 70px;
   margin-bottom: $spacing-md;
   border-radius: $radius-md;
-  
+
   ion-label[position="stacked"] {
     font-size: 0.75rem;
     font-weight: 600;
@@ -28,7 +28,7 @@ ion-item {
     color: $oak-text-muted;
     margin-bottom: $spacing-sm;
   }
-  
+
   ion-input, ion-select {
     --padding-top: #{$spacing-sm};
     --padding-bottom: #{$spacing-sm};
@@ -43,7 +43,7 @@ ion-segment {
   --background: #{$oak-bg-input};
   border-radius: $radius-md;
   padding: $spacing-xs;
-  
+
   ion-segment-button {
     --background: transparent;
     --background-checked: #{$oak-green};
@@ -64,16 +64,16 @@ ion-segment {
   align-items: center;
   justify-content: center;
   padding: $spacing-lg 0;
-  
+
   ion-icon {
     font-size: 3rem;
     padding: $spacing-md;
     border-radius: $radius-lg;
-    
+
     &[color="success"] {
       background: rgba($oak-green, 0.12);
     }
-    
+
     &[color="danger"] {
       background: rgba($oak-danger, 0.12);
     }
@@ -92,7 +92,7 @@ ion-segment {
 ion-footer {
   background: $oak-bg-dark;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  
+
   ion-toolbar {
     --background: transparent;
     --padding-start: #{$spacing-md};
@@ -101,7 +101,7 @@ ion-footer {
     --padding-bottom: #{$spacing-sm};
     padding-bottom: env(safe-area-inset-bottom);
   }
-  
+
   ion-button {
     --background: #{$oak-green};
     --background-activated: #4a9b85;
@@ -110,7 +110,7 @@ ion-footer {
     font-weight: 600;
     font-size: 1rem;
     height: 50px;
-    
+
     &[disabled] {
       --background: #{$oak-bg-input};
       --color: #{$oak-text-muted};
