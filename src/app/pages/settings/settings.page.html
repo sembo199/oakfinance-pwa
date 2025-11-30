@@ -17,7 +17,6 @@
         <h2>{{ 'settings.monthStartDay' | translate }}</h2>
         <p>{{ 'settings.monthStartDay.desc' | translate:{ day: settings.monthStartDay } }}</p>
       </ion-label>
-      <ion-note slot="end">{{ settings.monthStartDay }}</ion-note>
     </ion-item>
 
     <ion-item button class="ion-margin-bottom" (click)="changeCurrency()">
@@ -26,7 +25,6 @@
         <h2>{{ 'settings.currency' | translate }}</h2>
         <p>{{ settings.currency }}</p>
       </ion-label>
-      <ion-note slot="end">{{ settings.currencySymbol }}</ion-note>
     </ion-item>
 
     <ion-item button class="ion-margin-bottom" (click)="changeLanguage()">
