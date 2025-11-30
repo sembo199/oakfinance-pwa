@@ -446,6 +446,7 @@ ion-select {
 
 :root[data-theme="light"],
 :root.light-theme {
+
   ion-input,
   ion-textarea,
   ion-select {
@@ -544,6 +545,151 @@ ion-alert {
   .alert-radio-label,
   .alert-checkbox-label {
     color: #{$light-text-primary} !important;
+  }
+}
+
+
+
+/* =============================================================================
+   ALERT (iOS & MD)
+   ============================================================================= */
+
+ion-alert {
+  --background: #{$dark-bg-card};
+  --max-width: 320px;
+
+  .alert-wrapper {
+    background: $dark-bg-card;
+    border-radius: $radius-lg;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .alert-head {
+    padding: $spacing-md $spacing-md $spacing-sm;
+
+    .alert-title {
+      color: $dark-text-primary;
+      font-weight: $font-weight-semibold;
+      font-size: 1.125rem;
+    }
+
+    .alert-sub-title {
+      color: $dark-text-secondary;
+      font-size: 0.875rem;
+    }
+  }
+
+  .alert-message {
+    color: $dark-text-secondary;
+    padding: 0 $spacing-md $spacing-sm;
+    font-size: 0.9375rem;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  .alert-radio-label,
+  .alert-checkbox-label {
+    padding: $spacing-md;
+    color: $dark-text-primary;
+    font-size: 1rem;
+
+    .alert-radio-icon,
+    .alert-checkbox-icon {
+      border-color: rgba(255, 255, 255, 0.3);
+      border-width: 2px;
+      width: 20px;
+      height: 20px;
+      margin-inline-end: $spacing-md;
+    }
+
+    .alert-radio-inner {
+      background-color: $oak-green;
+    }
+
+    &[aria-checked="true"] {
+      .alert-radio-icon {
+        border-color: $oak-green;
+      }
+
+      .alert-checkbox-icon {
+        border-color: $oak-green;
+        background-color: $oak-green;
+
+        .alert-checkbox-inner {
+          border-color: #000000;
+        }
+      }
+    }
+  }
+
+  .alert-input-wrapper {
+    .alert-input {
+      background: $dark-bg-input;
+      color: $dark-text-primary;
+      border-radius: $radius-sm;
+      padding-left: $spacing-md;
+
+      &::placeholder {
+        color: $dark-text-muted;
+      }
+    }
+  }
+
+
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-alert {
+    --background: #{$light-bg-card};
+
+    .alert-wrapper {
+      background: $light-bg-card;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .alert-head {
+      .alert-title {
+        color: $light-text-primary;
+      }
+
+      .alert-sub-title {
+        color: $light-text-secondary;
+      }
+    }
+
+    .alert-message {
+      color: $light-text-secondary;
+    }
+
+    .alert-radio-label,
+    .alert-checkbox-label {
+      color: $light-text-primary;
+
+      .alert-radio-icon,
+      .alert-checkbox-icon {
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+
+      &[aria-checked="true"] {
+        .alert-checkbox-icon .alert-checkbox-inner {
+          border-color: #ffffff;
+        }
+      }
+    }
+
+    .alert-input-wrapper {
+      .alert-input {
+        background: $light-bg-input;
+        color: $light-text-primary;
+
+        &::placeholder {
+          color: $light-text-muted;
+        }
+      }
+    }
+
+
   }
 }
 
