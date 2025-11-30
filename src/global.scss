@@ -20,6 +20,9 @@
 @use "@ionic/angular/css/text-transformation.css";
 @use "@ionic/angular/css/flex-utils.css";
 
+/* Dark Mode - Always enabled for modern look */
+// @use "@ionic/angular/css/palettes/dark.always.css";
+
 /* =============================================================================
    OAKFINANCE CUSTOM GLOBAL STYLES
    ============================================================================= */
@@ -43,7 +46,12 @@ ion-content {
    TYPOGRAPHY
    ============================================================================= */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: $font-weight-semibold;
   color: $dark-text-primary;
 }
@@ -54,7 +62,13 @@ p {
 
 :root[data-theme="light"],
 :root.light-theme {
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: $light-text-primary;
   }
 
@@ -343,6 +357,7 @@ ion-segment {
 
     ion-segment-button {
       --color: #{$light-text-secondary};
+      --color-checked: #{$dark-text-primary};
     }
   }
 }
@@ -426,6 +441,7 @@ ion-fab-button {
 :root.light-theme {
   ion-fab-button {
     --background-activated: #{$light-green-activated};
+    --color: #{$dark-text-primary};
   }
 }
 
@@ -433,7 +449,9 @@ ion-fab-button {
    INPUTS & FORMS
    ============================================================================= */
 
-ion-input, ion-textarea, ion-select {
+ion-input,
+ion-textarea,
+ion-select {
   --background: #{$dark-bg-input};
   --color: #{$dark-text-primary};
   --placeholder-color: #{$dark-text-muted};
@@ -444,7 +462,10 @@ ion-input, ion-textarea, ion-select {
 
 :root[data-theme="light"],
 :root.light-theme {
-  ion-input, ion-textarea, ion-select {
+
+  ion-input,
+  ion-textarea,
+  ion-select {
     --background: #{$light-bg-input};
     --color: #{$light-text-primary};
     --placeholder-color: #{$light-text-muted};
@@ -580,67 +601,6 @@ ion-modal {
    UTILITY CLASSES
    ============================================================================= */
 
-.text-success {
-  color: $dark-success !important;
-}
-
-.text-danger {
-  color: $dark-danger !important;
-}
-
-.text-warning {
-  color: $dark-warning !important;
-}
-
-.text-muted {
-  color: $dark-text-muted !important;
-}
-
-.text-secondary {
-  color: $dark-text-secondary !important;
-}
-
-:root[data-theme="light"],
-:root.light-theme {
-  .text-success {
-    color: $light-success !important;
-  }
-
-  .text-danger {
-    color: $light-danger !important;
-  }
-
-  .text-warning {
-    color: $light-warning !important;
-  }
-
-  .text-muted {
-    color: $light-text-muted !important;
-  }
-
-  .text-secondary {
-    color: $light-text-secondary !important;
-  }
-}
-
-.bg-card {
-  background: $dark-bg-card !important;
-}
-
-.bg-elevated {
-  background: $dark-bg-elevated !important;
-}
-
-:root[data-theme="light"],
-:root.light-theme {
-  .bg-card {
-    background: $light-bg-card !important;
-  }
-
-  .bg-elevated {
-    background: $light-bg-elevated !important;
-  }
-}
 
 /* Currency/Amount display helpers */
 .amount-positive {
@@ -677,8 +637,15 @@ ion-modal {
    ============================================================================= */
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
@@ -687,8 +654,15 @@ ion-modal {
 
 /* Subtle pulse animation for important values */
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 .animate-pulse {
