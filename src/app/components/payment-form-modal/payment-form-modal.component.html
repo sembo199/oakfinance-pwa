@@ -11,20 +11,19 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="paymentForm" class="ion-padding">
+  <form [formGroup]="paymentForm" class="ion-padding payment-form">
 
     <!-- Type Selector -->
-    <ion-item>
-      <ion-label position="stacked">Type</ion-label>
-      <ion-segment formControlName="type">
-        <ion-segment-button value="expense">
-          <ion-label>Expense</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="income">
-          <ion-label>Income</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-item>
+
+    <ion-segment formControlName="type">
+      <ion-segment-button value="expense">
+        <ion-label>Expense</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="income">
+        <ion-label>Income</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
 
     <!-- Icon Picker -->
     <ion-item button (click)="openIconPicker()">
@@ -36,40 +35,50 @@
     </ion-item>
 
     <!-- Name -->
-    <ion-item>
-      <ion-label position="stacked">Name *</ion-label>
-      <ion-input formControlName="name" placeholder="e.g., Rent, Salary" type="text">
-      </ion-input>
-    </ion-item>
-    @if(paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched){
-    <ion-text color="danger">
-      <p class="error-text">Name is required</p>
-    </ion-text>
-    }
+    <div>
+      <ion-item>
+        <ion-label position="stacked">Name *</ion-label>
+        <ion-input formControlName="name" placeholder="e.g., Rent, Salary" type="text">
+        </ion-input>
+      </ion-item>
+      @if(paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched){
+      <ion-note class="input-hint" color="danger">
+        Name is required
+      </ion-note>
+      }
+    </div>
+
 
     <!-- Default Amount -->
-    <ion-item>
-      <ion-label position="stacked">Default Amount *</ion-label>
-      <ion-input formControlName="defaultAmount" type="number" placeholder="0.00" step="0.01">
-      </ion-input>
-    </ion-item>
-    @if(paymentForm.get('defaultAmount')?.invalid && paymentForm.get('defaultAmount')?.touched) {
-    <ion-text color="danger">
-      <p class="error-text">Amount must be greater than 0</p>
-    </ion-text>
-    }
+    <div>
+      <ion-item>
+        <ion-label position="stacked">Default Amount *</ion-label>
+        <ion-input formControlName="defaultAmount" type="number" placeholder="0.00" step="0.01">
+        </ion-input>
+      </ion-item>
+      @if(paymentForm.get('defaultAmount')?.invalid && paymentForm.get('defaultAmount')?.touched) {
+      <ion-note class="input-hint" color="danger">
+        Amount must be greater than 0
+      </ion-note>
+      }
+    </div>
+
 
     <!-- Day of Month -->
-    <ion-item>
-      <ion-label position="stacked">Day of Month (1-31) *</ion-label>
-      <ion-input formControlName="dayOfMonth" type="number" min="1" max="31">
-      </ion-input>
-    </ion-item>
-    @if(paymentForm.get('dayOfMonth')?.invalid && paymentForm.get('dayOfMonth')?.touched) {
-    <ion-text color="danger">
-      <p class="error-text">Day must be between 1 and 31</p>
-    </ion-text>
-    }
+    <div>
+      <ion-item>
+        <ion-label position="stacked">Day of Month (1-31) *</ion-label>
+        <ion-input formControlName="dayOfMonth" type="number" min="1" max="31">
+        </ion-input>
+      </ion-item>
+      @if(paymentForm.get('dayOfMonth')?.invalid && paymentForm.get('dayOfMonth')?.touched) {
+      <ion-note class="input-hint" color="danger">
+        Day must be between 1 and 31
+      </ion-note>
+      }
+
+    </div>
+
 
   </form>
 </ion-content>

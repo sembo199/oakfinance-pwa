@@ -10,20 +10,17 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="paymentForm" class="ion-padding">
+  <form [formGroup]="paymentForm" class="ion-padding one-time-payment-form">
 
     <!-- Type Selector -->
-    <ion-item>
-      <ion-label position="stacked">Type</ion-label>
-      <ion-segment formControlName="type">
-        <ion-segment-button value="expense">
-          <ion-label>Expense</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="income">
-          <ion-label>Income</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-item>
+    <ion-segment formControlName="type">
+      <ion-segment-button value="expense">
+        <ion-label>Expense</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="income">
+        <ion-label>Income</ion-label>
+      </ion-segment-button>
+    </ion-segment>
 
     <!-- Icon Picker -->
     <ion-item button (click)="openIconPicker()">
@@ -35,40 +32,44 @@
     </ion-item>
 
     <!-- Name -->
-    <ion-item>
-      <ion-label position="stacked">Name *</ion-label>
-      <ion-input formControlName="name" placeholder="e.g., Gift, Bonus" type="text">
-      </ion-input>
-    </ion-item>
-    @if(paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched){
-    <ion-text color="danger">
-      <p class="error-text">Name is required</p>
-    </ion-text>
-    }
-
+    <div>
+      <ion-item>
+        <ion-label position="stacked">Name *</ion-label>
+        <ion-input formControlName="name" placeholder="e.g., Gift, Bonus" type="text">
+        </ion-input>
+      </ion-item>
+      @if(paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched){
+      <ion-note class="input-hint">
+        Name is required
+      </ion-note>
+      }
+    </div>
 
     <!-- Amount -->
-    <ion-item>
-      <ion-label position="stacked">Amount *</ion-label>
-      <ion-input formControlName="amount" type="number" placeholder="0.00" step="0.01">
-      </ion-input>
-    </ion-item>
-    @if(paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched){
-    <ion-text color="danger">
-      <p class="error-text">Amount must be greater than 0</p>
-    </ion-text>
-    }
+    <div>
+      <ion-item>
+        <ion-label position="stacked">Amount *</ion-label>
+        <ion-input formControlName="amount" type="number" placeholder="0.00" step="0.01">
+        </ion-input>
+      </ion-item>
+      @if(paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched){
+      <ion-note class="input-hint">
+        Amount must be greater than 0
+      </ion-note>
+      }
+    </div>
 
     <!-- Date -->
-    <ion-item>
-      <ion-label position="stacked">Date *</ion-label>
-      <ion-input formControlName="dueDate" type="date">
-      </ion-input>
-    </ion-item>
-    <ion-note class="ion-padding-start">
-      Past dates will be automatically marked as completed
-    </ion-note>
-
+    <div>
+      <ion-item>
+        <ion-label position="stacked">Date *</ion-label>
+        <ion-input formControlName="dueDate" type="date">
+        </ion-input>
+      </ion-item>
+      <ion-note class="input-hint">
+        Past dates will be automatically marked as completed
+      </ion-note>
+    </div>
   </form>
 </ion-content>
 
