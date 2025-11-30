@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ isEditMode ? 'Edit' : 'Add' }} {{ paymentForm.value.type === 'income' ? 'Income' : 'Expense' }}</ion-title>
+    <ion-title>{{ isEditMode ? 'Edit' : 'Add' }} {{ paymentForm.value.type === 'income' ? 'Income' : 'Expense'
+      }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon name="close" slot="icon-only"></ion-icon>
@@ -11,7 +12,7 @@
 
 <ion-content>
   <form [formGroup]="paymentForm" class="ion-padding">
-    
+
     <!-- Type Selector -->
     <ion-item>
       <ion-label position="stacked">Type</ion-label>
@@ -29,60 +30,53 @@
     <ion-item button (click)="openIconPicker()">
       <ion-label position="stacked">Icon</ion-label>
       <div class="icon-preview">
-        <ion-icon [name]="paymentForm.value.iconName" size="large" [color]="paymentForm.value.type === 'income' ? 'success' : 'danger'"></ion-icon>
+        <ion-icon [name]="paymentForm.value.iconName" size="large"
+          [color]="paymentForm.value.type === 'income' ? 'success' : 'danger'"></ion-icon>
       </div>
     </ion-item>
 
     <!-- Name -->
     <ion-item>
       <ion-label position="stacked">Name *</ion-label>
-      <ion-input 
-        formControlName="name" 
-        placeholder="e.g., Rent, Salary"
-        type="text">
+      <ion-input formControlName="name" placeholder="e.g., Rent, Salary" type="text">
       </ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched">
+    @if(paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched){
+    <ion-text color="danger">
       <p class="error-text">Name is required</p>
     </ion-text>
+    }
 
     <!-- Default Amount -->
     <ion-item>
       <ion-label position="stacked">Default Amount *</ion-label>
-      <ion-input 
-        formControlName="defaultAmount" 
-        type="number" 
-        placeholder="0.00"
-        step="0.01">
+      <ion-input formControlName="defaultAmount" type="number" placeholder="0.00" step="0.01">
       </ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="paymentForm.get('defaultAmount')?.invalid && paymentForm.get('defaultAmount')?.touched">
+    @if(paymentForm.get('defaultAmount')?.invalid && paymentForm.get('defaultAmount')?.touched) {
+    <ion-text color="danger">
       <p class="error-text">Amount must be greater than 0</p>
     </ion-text>
+    }
 
     <!-- Day of Month -->
     <ion-item>
       <ion-label position="stacked">Day of Month (1-31) *</ion-label>
-      <ion-input 
-        formControlName="dayOfMonth" 
-        type="number" 
-        min="1" 
-        max="31">
+      <ion-input formControlName="dayOfMonth" type="number" min="1" max="31">
       </ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="paymentForm.get('dayOfMonth')?.invalid && paymentForm.get('dayOfMonth')?.touched">
+    @if(paymentForm.get('dayOfMonth')?.invalid && paymentForm.get('dayOfMonth')?.touched) {
+    <ion-text color="danger">
       <p class="error-text">Day must be between 1 and 31</p>
     </ion-text>
+    }
 
   </form>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button 
-      expand="block" 
-      (click)="save()" 
-      [disabled]="!paymentForm.valid">
+    <ion-button expand="block" (click)="save()" [disabled]="!paymentForm.valid">
       {{ isEditMode ? 'Update' : 'Add' }} Payment
     </ion-button>
   </ion-toolbar>

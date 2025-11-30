@@ -11,7 +11,7 @@
 
 <ion-content>
   <form [formGroup]="paymentForm" class="ion-padding">
-    
+
     <!-- Type Selector -->
     <ion-item>
       <ion-label position="stacked">Type</ion-label>
@@ -29,43 +29,40 @@
     <ion-item button (click)="openIconPicker()">
       <ion-label position="stacked">Icon</ion-label>
       <div class="icon-preview">
-        <ion-icon [name]="paymentForm.value.iconName" size="large" [color]="paymentForm.value.type === 'income' ? 'success' : 'danger'"></ion-icon>
+        <ion-icon [name]="paymentForm.value.iconName" size="large"
+          [color]="paymentForm.value.type === 'income' ? 'success' : 'danger'"></ion-icon>
       </div>
     </ion-item>
 
     <!-- Name -->
     <ion-item>
       <ion-label position="stacked">Name *</ion-label>
-      <ion-input 
-        formControlName="name" 
-        placeholder="e.g., Gift, Bonus"
-        type="text">
+      <ion-input formControlName="name" placeholder="e.g., Gift, Bonus" type="text">
       </ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched">
+    @if(paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched){
+    <ion-text color="danger">
       <p class="error-text">Name is required</p>
     </ion-text>
+    }
+
 
     <!-- Amount -->
     <ion-item>
       <ion-label position="stacked">Amount *</ion-label>
-      <ion-input 
-        formControlName="amount" 
-        type="number" 
-        placeholder="0.00"
-        step="0.01">
+      <ion-input formControlName="amount" type="number" placeholder="0.00" step="0.01">
       </ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched">
+    @if(paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched){
+    <ion-text color="danger">
       <p class="error-text">Amount must be greater than 0</p>
     </ion-text>
+    }
 
     <!-- Date -->
     <ion-item>
       <ion-label position="stacked">Date *</ion-label>
-      <ion-input 
-        formControlName="dueDate" 
-        type="date">
+      <ion-input formControlName="dueDate" type="date">
       </ion-input>
     </ion-item>
     <ion-note class="ion-padding-start">
@@ -77,10 +74,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button 
-      expand="block" 
-      (click)="save()" 
-      [disabled]="!paymentForm.valid">
+    <ion-button expand="block" (click)="save()" [disabled]="!paymentForm.valid">
       Add Payment
     </ion-button>
   </ion-toolbar>

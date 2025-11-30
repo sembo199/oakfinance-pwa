@@ -7,7 +7,10 @@
     </ion-buttons>
     <ion-title>
       {{ currentPeriod.displayLabel }}
-      <ion-badge *ngIf="isCurrentPeriod()" color="primary" style="margin-left: 8px; font-size: 10px; vertical-align: middle;">{{ 'tracker.now' | translate }}</ion-badge>
+      @if(isCurrentPeriod()){
+      <ion-badge color="primary" style="margin-left: 8px; font-size: 10px; vertical-align: middle;">{{ 'tracker.now' |
+        translate }}</ion-badge>
+      }
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="nextMonth()">
@@ -18,7 +21,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding-bottom">
-  
+
   <!-- Summary Card -->
   <ion-card class="summary-card">
     <ion-card-content>
@@ -46,32 +49,24 @@
   </ion-card>
 
   <!-- Overdue -->
-  <ion-list *ngIf="groupedLogs.overdue.length > 0">
+  @if(groupedLogs.overdue.length > 0){
+  <ion-list>
     <ion-list-header>
       <ion-label color="danger">{{ 'tracker.due' | translate }} ({{ groupedLogs.overdue.length }})</ion-label>
     </ion-list-header>
     <ion-item-sliding *ngFor="let log of groupedLogs.overdue">
       <ion-item [class.completed-item]="log.isCompleted">
-        <ion-icon 
-          [name]="log.iconName" 
-          slot="start" 
-          [color]="log.type === 'income' ? 'success' : 'danger'">
+        <ion-icon [name]="log.iconName" slot="start" [color]="log.type === 'income' ? 'success' : 'danger'">
         </ion-icon>
         <ion-label>
           <h2>{{ log.name }}</h2>
           <p>Due: {{ log.dueDate | date:'MMM d' }}</p>
         </ion-label>
-        <ion-badge 
-          slot="end" 
-          [color]="log.type === 'income' ? 'success' : 'danger'"
-          (click)="editAmount(log)"
+        <ion-badge slot="end" [color]="log.type === 'income' ? 'success' : 'danger'" (click)="editAmount(log)"
           class="clickable-badge">
           {{ log.amount | appCurrency }}
         </ion-badge>
-        <ion-checkbox 
-          slot="end" 
-          [checked]="log.isCompleted"
-          (ionChange)="toggleCompleted(log)">
+        <ion-checkbox slot="end" [checked]="log.isCompleted" (ionChange)="toggleCompleted(log)">
         </ion-checkbox>
       </ion-item>
 
@@ -82,34 +77,28 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  }
+
 
   <!-- Upcoming -->
-  <ion-list *ngIf="groupedLogs.upcoming.length > 0">
+  @if(groupedLogs.upcoming.length > 0){
+  <ion-list>
     <ion-list-header>
       <ion-label>{{ 'tracker.pending' | translate }} ({{ groupedLogs.upcoming.length }})</ion-label>
     </ion-list-header>
     <ion-item-sliding *ngFor="let log of groupedLogs.upcoming">
       <ion-item [class.completed-item]="log.isCompleted">
-        <ion-icon 
-          [name]="log.iconName" 
-          slot="start" 
-          [color]="log.type === 'income' ? 'success' : 'danger'">
+        <ion-icon [name]="log.iconName" slot="start" [color]="log.type === 'income' ? 'success' : 'danger'">
         </ion-icon>
         <ion-label>
           <h2>{{ log.name }}</h2>
           <p>Due: {{ log.dueDate | date:'MMM d' }}</p>
         </ion-label>
-        <ion-badge 
-          slot="end" 
-          [color]="log.type === 'income' ? 'success' : 'danger'"
-          (click)="editAmount(log)"
+        <ion-badge slot="end" [color]="log.type === 'income' ? 'success' : 'danger'" (click)="editAmount(log)"
           class="clickable-badge">
           {{ log.amount | appCurrency }}
         </ion-badge>
-        <ion-checkbox 
-          slot="end" 
-          [checked]="log.isCompleted"
-          (ionChange)="toggleCompleted(log)">
+        <ion-checkbox slot="end" [checked]="log.isCompleted" (ionChange)="toggleCompleted(log)">
         </ion-checkbox>
       </ion-item>
 
@@ -120,34 +109,26 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  }
 
-  <!-- Completed -->
-  <ion-list *ngIf="groupedLogs.completed.length > 0">
+  @if(groupedLogs.completed.length > 0){
+  <ion-list>
     <ion-list-header>
       <ion-label color="success">{{ 'tracker.completed' | translate }} ({{ groupedLogs.completed.length }})</ion-label>
     </ion-list-header>
     <ion-item-sliding *ngFor="let log of groupedLogs.completed">
       <ion-item class="completed-item">
-        <ion-icon 
-          [name]="log.iconName" 
-          slot="start" 
-          [color]="log.type === 'income' ? 'success' : 'danger'">
+        <ion-icon [name]="log.iconName" slot="start" [color]="log.type === 'income' ? 'success' : 'danger'">
         </ion-icon>
         <ion-label>
           <h2>{{ log.name }}</h2>
           <p>Completed: {{ log.completedDate | date:'MMM d' }}</p>
         </ion-label>
-        <ion-badge 
-          slot="end" 
-          [color]="log.type === 'income' ? 'success' : 'danger'"
-          (click)="editAmount(log)"
+        <ion-badge slot="end" [color]="log.type === 'income' ? 'success' : 'danger'" (click)="editAmount(log)"
           class="clickable-badge">
           {{ log.amount | appCurrency }}
         </ion-badge>
-        <ion-checkbox 
-          slot="end" 
-          [checked]="log.isCompleted"
-          (ionChange)="toggleCompleted(log)">
+        <ion-checkbox slot="end" [checked]="log.isCompleted" (ionChange)="toggleCompleted(log)">
         </ion-checkbox>
       </ion-item>
 
@@ -158,14 +139,17 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-  <div *ngIf="allLogs.length === 0" class="empty-state">
+  }
+  <!-- Empty -->
+  @if( allLogs.length === 0){
+  <div class="empty-state">
     <ion-icon name="calendar-outline" color="medium"></ion-icon>
     <p>No payments for this period</p>
     <ion-text color="medium">
       <p>Add recurring payments to track them here</p>
     </ion-text>
   </div>
+  }
 
 </ion-content>
 
@@ -181,17 +165,13 @@
               <ion-label class="balance-label">{{ 'tracker.currentBalance' | translate }}</ion-label>
               <div class="balance-input-container">
                 <span class="currency-prefix">{{ currencySymbol }}</span>
-                <ion-input 
-                  type="number" 
-                  [(ngModel)]="currentBalance"
-                  (ionChange)="onBalanceChange()"
-                  placeholder="0.00"
+                <ion-input type="number" [(ngModel)]="currentBalance" (ionChange)="onBalanceChange()" placeholder="0.00"
                   class="balance-input">
                 </ion-input>
               </div>
             </div>
           </ion-col>
-          
+
           <!-- Forecast Display -->
           <ion-col size="6">
             <div class="forecast-display">

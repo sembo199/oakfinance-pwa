@@ -15,82 +15,81 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <!-- Expenses List -->
-  <div *ngIf="selectedSegment === 'expense'">
-    <ion-list *ngIf="expensePayments.length > 0; else noExpenses">
-      <ion-item-sliding *ngFor="let payment of expensePayments">
-        <ion-item>
-          <ion-icon [name]="payment.iconName" slot="start" color="danger">
-          </ion-icon>
-          <ion-label>
-            <h2>{{ payment.name }}</h2>
-            <p>{{ 'payments.dayOfMonth' | translate:{ day: payment.dayOfMonth } }}</p>
-          </ion-label>
-          <ion-badge slot="end" color="danger">
-            {{ payment.defaultAmount | appCurrency }}
-          </ion-badge>
-        </ion-item>
-
-        <ion-item-options side="end">
-          <ion-item-option color="primary" (click)="openEditModal(payment)">
-            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-          </ion-item-option>
-          <ion-item-option color="danger" (click)="confirmDelete(payment)">
-            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-
-    <ng-template #noExpenses>
-      <div class="empty-state">
-        <ion-icon name="wallet-outline" color="medium"></ion-icon>
-        <p>{{ 'payments.noExpenses' | translate }}</p>
-        <ion-text color="medium">
-          <p>{{ 'payments.addFirst' | translate:{ type: ('payments.expenses' | translate).toLowerCase() } }}</p>
-        </ion-text>
-      </div>
-    </ng-template>
+  @if( selectedSegment === 'expense'){
+  @if(expensePayments.length > 0){
+  <ion-list>
+    <ion-item-sliding *ngFor="let payment of expensePayments">
+      <ion-item>
+        <ion-icon [name]="payment.iconName" slot="start" color="danger">
+        </ion-icon>
+        <ion-label>
+          <h2>{{ payment.name }}</h2>
+          <p>{{ 'payments.dayOfMonth' | translate:{ day: payment.dayOfMonth } }}</p>
+        </ion-label>
+        <ion-badge slot="end" color="danger">
+          {{ payment.defaultAmount | appCurrency }}
+        </ion-badge>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="openEditModal(payment)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="confirmDelete(payment)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  }
+  @else{
+  <div class="empty-state">
+    <ion-icon name="wallet-outline" color="medium"></ion-icon>
+    <p>{{ 'payments.noExpenses' | translate }}</p>
+    <ion-text color="medium">
+      <p>{{ 'payments.addFirst' | translate:{ type: ('payments.expenses' | translate).toLowerCase() } }}</p>
+    </ion-text>
   </div>
+  }
+  }
 
   <!-- Income List -->
-  <div *ngIf="selectedSegment === 'income'">
-    <ion-list *ngIf="incomePayments.length > 0; else noIncome">
-      <ion-item-sliding *ngFor="let payment of incomePayments">
-        <ion-item>
-          <ion-icon [name]="payment.iconName" slot="start" color="success">
-          </ion-icon>
-          <ion-label>
-            <h2>{{ payment.name }}</h2>
-            <p>{{ 'payments.dayOfMonth' | translate:{ day: payment.dayOfMonth } }}</p>
-          </ion-label>
-          <ion-badge slot="end" color="success">
-            {{ payment.defaultAmount | appCurrency }}
-          </ion-badge>
-        </ion-item>
+  @if(selectedSegment === 'income'){
+  @if(incomePayments.length > 0){
+  <ion-list>
+    <ion-item-sliding *ngFor="let payment of incomePayments">
+      <ion-item>
+        <ion-icon [name]="payment.iconName" slot="start" color="success">
+        </ion-icon>
+        <ion-label>
+          <h2>{{ payment.name }}</h2>
+          <p>{{ 'payments.dayOfMonth' | translate:{ day: payment.dayOfMonth } }}</p>
+        </ion-label>
+        <ion-badge slot="end" color="success">
+          {{ payment.defaultAmount | appCurrency }}
+        </ion-badge>
+      </ion-item>
 
-        <ion-item-options side="end">
-          <ion-item-option color="primary" (click)="openEditModal(payment)">
-            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-          </ion-item-option>
-          <ion-item-option color="danger" (click)="confirmDelete(payment)">
-            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-
-    <ng-template #noIncome>
-      <div class="empty-state">
-        <ion-icon name="cash-outline" color="medium"></ion-icon>
-        <p>{{ 'payments.noIncome' | translate }}</p>
-        <ion-text color="medium">
-          <p>{{ 'payments.addFirst' | translate:{ type: ('payments.income' | translate).toLowerCase() } }}</p>
-        </ion-text>
-      </div>
-    </ng-template>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="openEditModal(payment)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="confirmDelete(payment)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  }@else {
+  <div class="empty-state">
+    <ion-icon name="cash-outline" color="medium"></ion-icon>
+    <p>{{ 'payments.noIncome' | translate }}</p>
+    <ion-text color="medium">
+      <p>{{ 'payments.addFirst' | translate:{ type: ('payments.income' | translate).toLowerCase() } }}</p>
+    </ion-text>
   </div>
+  }
+  }
 
   <!-- FAB -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
