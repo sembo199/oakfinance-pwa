@@ -168,11 +168,6 @@ ion-item {
   --background-hover: #{$dark-bg-elevated};
   --background-activated: #{$dark-bg-elevated};
   --border-color: transparent;
-  --inner-border-width: 0;
-  --padding-start: #{$spacing-md};
-  --padding-end: #{$spacing-md};
-  --min-height: 60px;
-  margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
 
   ion-label {
@@ -180,7 +175,6 @@ ion-item {
       font-weight: $font-weight-medium;
       font-size: 1rem;
       color: $dark-text-primary;
-      margin-bottom: 2px;
     }
 
     p {
@@ -223,23 +217,15 @@ ion-item {
 
 // Swipe action styling
 ion-item-sliding {
-  margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
-  overflow: hidden;
+  margin-bottom: $spacing-md;
 
   ion-item {
-    margin: 0;
     border-radius: 0;
   }
 }
 
-ion-item-options {
-  border-radius: 0 $radius-md $radius-md 0;
 
-  ion-item-option {
-    font-weight: $font-weight-medium;
-  }
-}
 
 /* =============================================================================
    BADGES
@@ -546,15 +532,17 @@ ion-modal {
 }
 
 ion-alert {
+
   .alert-radio-label,
   .alert-checkbox-label {
-    color:  #{$dark-text-primary} !important;
+    color: #{$dark-text-primary} !important;
   }
 }
 
 :root[data-theme="light"],
 :root.light-theme {
- .alert-radio-label,
+
+  .alert-radio-label,
   .alert-checkbox-label {
     color: #{$light-text-primary} !important;
   }

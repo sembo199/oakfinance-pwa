@@ -20,7 +20,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding-bottom">
+<ion-content [fullscreen]="true">
 
   <!-- Summary Card -->
   <ion-card class="summary-card">
@@ -50,7 +50,7 @@
 
   <!-- Overdue -->
   @if(groupedLogs.overdue.length > 0){
-  <ion-list>
+  <ion-list class="ion-padding">
     <ion-list-header>
       <ion-label color="danger">{{ 'tracker.due' | translate }} ({{ groupedLogs.overdue.length }})</ion-label>
     </ion-list-header>
@@ -82,7 +82,7 @@
 
   <!-- Upcoming -->
   @if(groupedLogs.upcoming.length > 0){
-  <ion-list>
+  <ion-list class="ion-padding">
     <ion-list-header>
       <ion-label>{{ 'tracker.pending' | translate }} ({{ groupedLogs.upcoming.length }})</ion-label>
     </ion-list-header>
@@ -113,7 +113,7 @@
   }
 
   @if(groupedLogs.completed.length > 0){
-  <ion-list>
+  <ion-list class="ion-padding">
     <ion-list-header>
       <ion-label color="success">{{ 'tracker.completed' | translate }} ({{ groupedLogs.completed.length }})</ion-label>
     </ion-list-header>
