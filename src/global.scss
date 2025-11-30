@@ -446,11 +446,10 @@ ion-select {
 
 :root[data-theme="light"],
 :root.light-theme {
-
   ion-input,
   ion-textarea,
   ion-select {
-    --background: #{$light-bg-input};
+    --background: transparent;
     --color: #{$light-text-primary};
     --placeholder-color: #{$light-text-muted};
   }
