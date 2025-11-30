@@ -555,20 +555,19 @@ ion-alert {
    ============================================================================= */
 
 ion-alert {
-  --background: #{$dark-bg-card};
+  --background: #{$dark-bg-card} !important;
   --max-width: 320px;
 
   .alert-wrapper {
-    background: $dark-bg-card;
+    background: $dark-bg-card !important;
     border-radius: $radius-lg;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
   .alert-head {
     padding: $spacing-md $spacing-md $spacing-sm;
 
     .alert-title {
-      color: $dark-text-primary;
+      color: $dark-text-primary !important;
       font-weight: $font-weight-semibold;
       font-size: 1.125rem;
     }
@@ -641,16 +640,15 @@ ion-alert {
 :root[data-theme="light"],
 :root.light-theme {
   ion-alert {
-    --background: #{$light-bg-card};
+    --background: #{$light-bg-card} !important;
 
     .alert-wrapper {
-      background: $light-bg-card;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      background: $light-bg-card !important;
     }
 
     .alert-head {
       .alert-title {
-        color: $light-text-primary;
+        color: $light-text-primary !important;
       }
 
       .alert-sub-title {
