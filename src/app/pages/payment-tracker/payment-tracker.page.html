@@ -167,7 +167,7 @@
             <div class="balance-input-wrapper">
               <ion-label class="balance-label">{{ 'tracker.currentBalance' | translate }}</ion-label>
               <div class="balance-input-container">
-                <span class="currency-prefix">{{ currencySymbol }}</span>
+                <ion-note color="primary" class="currency-prefix">{{ currencySymbol }}</ion-note>
                 <ion-input type="number" [(ngModel)]="currentBalance" (ionChange)="onBalanceChange()" placeholder="0.00"
                   class="balance-input">
                 </ion-input>
@@ -177,13 +177,13 @@
 
           <!-- Forecast Display -->
           <ion-col size="6">
-            <div class="forecast-display">
+            <div class="forecast-display" >
               <ion-text color="medium">
                 <p class="forecast-label">{{ 'tracker.forecastedBalance' | translate }}</p>
               </ion-text>
-              <h2 class="forecast-amount" [ngClass]="getForecastColor() + '-text'">
+              <ion-title [color]="getForecastColor()">
                 {{ forecast.forecastedBalance | appCurrency }}
-              </h2>
+              </ion-title>
               <ion-text color="medium">
                 <p class="forecast-details">
                   <ion-icon name="arrow-down" color="danger"></ion-icon> {{ forecast.pendingExpenses | appCurrency }}
