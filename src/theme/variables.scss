@@ -1,36 +1,80 @@
-// OakFinance Modern Dark Theme
-// Based on modern financial app design with dark mode focus
-// https://ionicframework.com/docs/theming/
-
-// =============================================================================
-// CUSTOM COLOR PALETTE
+// OakFinance Theme Variables - Light & Dark Mode Support with SCSS
 // =============================================================================
 
-// Primary accent colors from design reference
-$oak-green: #5CB299;       // Primary action color - mint/teal green
-$oak-coral: #F5A9B8;       // Secondary accent - soft coral pink  
-$oak-yellow: #E8C547;      // Tertiary accent - golden yellow
-$oak-blue: #7B9EDB;        // Info accent - soft blue
+// =============================================================================
+// SHARED COLOR PALETTE (SCSS Variables)
+// =============================================================================
 
-// Dark theme backgrounds
-$oak-bg-darkest: #0D0D0D;  // Deepest background
-$oak-bg-dark: #1A1A1A;     // Main background
-$oak-bg-card: #252525;     // Card background
-$oak-bg-elevated: #2D2D2D; // Elevated surfaces
-$oak-bg-input: #333333;    // Input fields
+// Brand accent colors
+$oak-green: #5CB299;
+$oak-coral: #F5A9B8;
+$oak-yellow: #E8C547;
+$oak-blue: #7B9EDB;
 
-// Text colors
-$oak-text-primary: #FFFFFF;
-$oak-text-secondary: #B3B3B3;
-$oak-text-muted: #808080;
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
 
-// Semantic colors
-$oak-success: #5CB299;     // Income/positive - matches primary
-$oak-danger: #E57373;      // Expenses/negative - softer red
-$oak-warning: #E8C547;     // Warning - golden yellow
+// Border radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+
+// Typography
+$font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
 
 // =============================================================================
-// IONIC CSS VARIABLES - ROOT (Default / Dark Mode)
+// DARK THEME COLORS (SCSS Variables)
+// =============================================================================
+
+$dark-bg-darkest: #0D0D0D;
+$dark-bg-dark: #1A1A1A;
+$dark-bg-card: #252525;
+$dark-bg-elevated: #2D2D2D;
+$dark-bg-input: #333333;
+
+$dark-text-primary: #FFFFFF;
+$dark-text-secondary: #B3B3B3;
+$dark-text-muted: #808080;
+
+$dark-success: #5CB299;
+$dark-danger: #E57373;
+$dark-warning: #E8C547;
+
+$dark-green-activated: #4a9b85;
+$dark-bg-card-darker: #1f1f1f;
+
+// =============================================================================
+// LIGHT THEME COLORS (SCSS Variables)
+// =============================================================================
+
+$light-bg-lightest: #FFFFFF;
+$light-bg-light: #F8F9FA;
+$light-bg-card: #FFFFFF;
+$light-bg-elevated: #F1F3F5;
+$light-bg-input: #E9ECEF;
+
+$light-text-primary: #212529;
+$light-text-secondary: #6C757D;
+$light-text-muted: #ADB5BD;
+
+$light-success: #48A383;
+$light-danger: #DC3545;
+$light-warning: #D4B23E;
+
+$light-green-activated: #3d8a6e;
+$light-bg-card-darker: #F5F5F5;
+
+// =============================================================================
+// DARK MODE - DEFAULT (CSS Variables from SCSS)
 // =============================================================================
 
 :root {
@@ -58,91 +102,172 @@ $oak-warning: #E8C547;     // Warning - golden yellow
   --ion-color-tertiary-shade: #ccad3e;
   --ion-color-tertiary-tint: #eacb59;
 
-  // Success - Green (same as primary for consistency)
-  --ion-color-success: #{$oak-success};
+  // Success
+  --ion-color-success: #{$dark-success};
   --ion-color-success-rgb: 92, 178, 153;
   --ion-color-success-contrast: #000000;
   --ion-color-success-contrast-rgb: 0, 0, 0;
   --ion-color-success-shade: #51a087;
   --ion-color-success-tint: #6cbaa3;
 
-  // Warning - Golden Yellow
-  --ion-color-warning: #{$oak-warning};
+  // Warning
+  --ion-color-warning: #{$dark-warning};
   --ion-color-warning-rgb: 232, 197, 71;
   --ion-color-warning-contrast: #000000;
   --ion-color-warning-contrast-rgb: 0, 0, 0;
   --ion-color-warning-shade: #ccad3e;
   --ion-color-warning-tint: #eacb59;
 
-  // Danger - Soft Red
-  --ion-color-danger: #{$oak-danger};
+  // Danger
+  --ion-color-danger: #{$dark-danger};
   --ion-color-danger-rgb: 229, 115, 115;
   --ion-color-danger-contrast: #000000;
   --ion-color-danger-contrast-rgb: 0, 0, 0;
   --ion-color-danger-shade: #ca6565;
   --ion-color-danger-tint: #e88181;
 
-  // Dark - Card backgrounds
-  --ion-color-dark: #{$oak-bg-card};
+  // Dark
+  --ion-color-dark: #{$dark-bg-card};
   --ion-color-dark-rgb: 37, 37, 37;
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255, 255, 255;
   --ion-color-dark-shade: #212121;
   --ion-color-dark-tint: #3b3b3b;
 
-  // Medium - Secondary text
-  --ion-color-medium: #{$oak-text-secondary};
+  // Medium
+  --ion-color-medium: #{$dark-text-secondary};
   --ion-color-medium-rgb: 179, 179, 179;
   --ion-color-medium-contrast: #000000;
   --ion-color-medium-contrast-rgb: 0, 0, 0;
   --ion-color-medium-shade: #9e9e9e;
   --ion-color-medium-tint: #bbbbbb;
 
-  // Light - Input backgrounds
-  --ion-color-light: #{$oak-bg-input};
+  // Light
+  --ion-color-light: #{$dark-bg-input};
   --ion-color-light-rgb: 51, 51, 51;
   --ion-color-light-contrast: #ffffff;
   --ion-color-light-contrast-rgb: 255, 255, 255;
   --ion-color-light-shade: #2d2d2d;
   --ion-color-light-tint: #474747;
 
-  // =============================================================================
-  // GLOBAL BACKGROUND & TEXT
-  // =============================================================================
-  
-  --ion-background-color: #{$oak-bg-dark};
+  // Global backgrounds & text
+  --ion-background-color: #{$dark-bg-dark};
   --ion-background-color-rgb: 26, 26, 26;
-
-  --ion-text-color: #{$oak-text-primary};
+  --ion-text-color: #{$dark-text-primary};
   --ion-text-color-rgb: 255, 255, 255;
 
-  // =============================================================================
-  // COMPONENT SPECIFIC VARIABLES
-  // =============================================================================
-
-  // Toolbar
-  --ion-toolbar-background: #{$oak-bg-dark};
-  --ion-toolbar-color: #{$oak-text-primary};
+  // Component specific
+  --ion-toolbar-background: #{$dark-bg-dark};
+  --ion-toolbar-color: #{$dark-text-primary};
   --ion-toolbar-border-color: transparent;
-
-  // Tab bar
-  --ion-tab-bar-background: #{$oak-bg-card};
-  --ion-tab-bar-color: #{$oak-text-muted};
+  --ion-tab-bar-background: #{$dark-bg-card};
+  --ion-tab-bar-color: #{$dark-text-muted};
   --ion-tab-bar-color-selected: #{$oak-green};
-
-  // Cards
-  --ion-card-background: #{$oak-bg-card};
-
-  // Item
+  --ion-card-background: #{$dark-bg-card};
   --ion-item-background: transparent;
-  --ion-item-border-color: #{$oak-bg-elevated};
-
-  // Segment
-  --ion-segment-background: #{$oak-bg-input};
+  --ion-item-border-color: #{$dark-bg-elevated};
+  --ion-segment-background: #{$dark-bg-input};
   --ion-segment-indicator-background: #{$oak-green};
+  --ion-modal-background: #{$dark-bg-dark};
+}
 
-  // Modal
-  --ion-modal-background: #{$oak-bg-dark};
+// =============================================================================
+// LIGHT MODE (CSS Variables from SCSS)
+// =============================================================================
+
+:root[data-theme="light"],
+:root.light-theme {
+  // Primary - Mint Green (same)
+  --ion-color-primary: #{$oak-green};
+  --ion-color-primary-rgb: 92, 178, 153;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #51a087;
+  --ion-color-primary-tint: #6cbaa3;
+
+  // Secondary - Coral Pink (same)
+  --ion-color-secondary: #{$oak-coral};
+  --ion-color-secondary-rgb: 245, 169, 184;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #d895a2;
+  --ion-color-secondary-tint: #f6b2bf;
+
+  // Tertiary - Golden Yellow (same)
+  --ion-color-tertiary: #{$oak-yellow};
+  --ion-color-tertiary-rgb: 232, 197, 71;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #ccad3e;
+  --ion-color-tertiary-tint: #eacb59;
+
+  // Success
+  --ion-color-success: #{$light-success};
+  --ion-color-success-rgb: 72, 163, 131;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #3e8f73;
+  --ion-color-success-tint: #5aad8e;
+
+  // Warning
+  --ion-color-warning: #{$light-warning};
+  --ion-color-warning-rgb: 212, 178, 62;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #bb9d37;
+  --ion-color-warning-tint: #dcbc51;
+
+  // Danger
+  --ion-color-danger: #{$light-danger};
+  --ion-color-danger-rgb: 220, 53, 69;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #c22e3c;
+  --ion-color-danger-tint: #de5766;
+
+  // Dark
+  --ion-color-dark: #212529;
+  --ion-color-dark-rgb: 33, 37, 41;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1d2024;
+  --ion-color-dark-tint: #37393e;
+
+  // Medium
+  --ion-color-medium: #{$light-text-secondary};
+  --ion-color-medium-rgb: 108, 117, 125;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #5f656e;
+  --ion-color-medium-tint: #7c8389;
+
+  // Light
+  --ion-color-light: #{$light-bg-elevated};
+  --ion-color-light-rgb: 241, 243, 245;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d4d5d8;
+  --ion-color-light-tint: #f2f4f6;
+
+  // Global backgrounds & text
+  --ion-background-color: #{$light-bg-light};
+  --ion-background-color-rgb: 248, 249, 250;
+  --ion-text-color: #{$light-text-primary};
+  --ion-text-color-rgb: 33, 37, 41;
+
+  // Component specific
+  --ion-toolbar-background: #{$light-bg-card};
+  --ion-toolbar-color: #{$light-text-primary};
+  --ion-toolbar-border-color: rgba(0, 0, 0, 0.05);
+  --ion-tab-bar-background: #{$light-bg-card};
+  --ion-tab-bar-color: #{$light-text-muted};
+  --ion-tab-bar-color-selected: #{$oak-green};
+  --ion-card-background: #{$light-bg-card};
+  --ion-item-background: transparent;
+  --ion-item-border-color: #{$light-bg-elevated};
+  --ion-segment-background: #{$light-bg-input};
+  --ion-segment-indicator-background: #{$oak-green};
+  --ion-modal-background: #{$light-bg-card};
 }
 
 // =============================================================================

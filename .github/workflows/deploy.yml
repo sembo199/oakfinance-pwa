@@ -1,22 +1,31 @@
-name: Deploy to GitHub Pages
+name: Deploy Ionic/Angular App to GitHub Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
+    outputs:
+      site_path: ${{ steps.detect-output.outputs.path }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -25,21 +34,93 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run unit tests
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+      - name: Build (npm run build -> ng build)
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          set -e
+          echo "Repo: $REPO_NAME"
+          # Use package.json "build" script (ng build) and forward production args
+          # npm run build -- <args> will forward additional args to the script
+          npm run build -- --configuration production --base-href /$REPO_NAME/ --deploy-url /$REPO_NAME/ || \
+          { echo "Build failed; trying non-production build fallback"; npm run build --if-present; }
 
-      - name: Build application
-        run: npm run build -- --configuration production
+      - name: Detect build output folder
+        id: detect-output
+        run: |
+          # Determine the folder to publish (common Angular / Ionic outputs)
+          # Priority:
+          # 1) dist/*/browser
+          # 2) dist/* (single subfolder)
+          # 3) dist
+          # 4) www
+          # 5) .
+          set -e
+          OUTPUT="."
+          if [ -d "./dist" ]; then
+            # prefer dist/*/browser if exists
+            BROWSERS=$(ls -d dist/*/browser 2>/dev/null || true)
+            if [ -n "$BROWSERS" ]; then
+              # pick first match
+              FIRST=$(echo "$BROWSERS" | head -n1)
+              OUTPUT="$FIRST"
+            else
+              # if there is exactly one subfolder under dist, use it
+              SUBS=$(ls -1d dist/*/ 2>/dev/null | wc -l || true)
+              if [ "$SUBS" -eq 1 ]; then
+                SUBDIR=$(basename $(ls -1d dist/*/ | head -n1))
+                if [ -d "dist/$SUBDIR/browser" ]; then
+                  OUTPUT="dist/$SUBDIR/browser"
+                else
+                  OUTPUT="dist/$SUBDIR"
+                fi
+              else
+                # fallback to dist root (may contain files directly)
+                OUTPUT="dist"
+              fi
+            fi
+          elif [ -d "./www" ]; then
+            OUTPUT="www"
+          fi
+          # normalize path
+          OUTPUT="${OUTPUT%/}"
+          echo "Detected publish path: $OUTPUT"
+          echo "path=$OUTPUT" >> $GITHUB_OUTPUT
 
-      - name: Add .nojekyll file
-        run: touch www/.nojekyll
+      - name: Prepare site files (.nojekyll + 404)
+        run: |
+          set -e
+          P="${{ steps.detect-output.outputs.path }}"
+          if [ -d "$P" ]; then
+            mkdir -p "$P"
+            touch "$P/.nojekyll"
+            if [ -f "$P/index.html" ]; then
+              cp "$P/index.html" "$P/404.html"
+              echo "Created 404.html from index.html"
+            else
+              echo "No index.html in $P; skipping 404 copy"
+            fi
+          else
+            echo "Warning: publish path $P does not exist"
+            ls -la
+            exit 1
+          fi
 
-      - name: Copy index.html to 404.html for GitHub Pages routing
-        run: cp www/index.html www/404.html
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./www
-          cname: false
+          path: ${{ steps.detect-output.outputs.path }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

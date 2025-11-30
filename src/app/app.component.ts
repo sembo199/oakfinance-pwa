@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { Storage } from '@ionic/storage-angular';
 import { SettingsService } from './services/settings.service';
 import { TranslationService } from './services/translation.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,12 @@ import { TranslationService } from './services/translation.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private storage: Storage,
     private settingsService: SettingsService,
-    private translationService: TranslationService
+    private translationService: TranslationService,
+    private themeService: ThemeService
   ) {}
 
   async ngOnInit() {
-    // Initialize Ionic Storage
-    await this.storage.create();
-    
     // Load saved language and initialize translations
     const settings = await this.settingsService.get();
     await this.translationService.setLanguage(settings.language);

@@ -1,63 +1,80 @@
 /*
- * App Global CSS
+ * App Global CSS - SCSS with Theme Support
  * ----------------------------------------------------------------------------
- * OakFinance PWA - Modern Dark Theme
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
+ * OakFinance PWA - Light & Dark Theme Support using SCSS Variables
  */
 
+@use "theme/variables" as *;
+
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@use "@ionic/angular/css/core.css";
+@use "@ionic/angular/css/normalize.css";
+@use "@ionic/angular/css/structure.css";
+@use "@ionic/angular/css/typography.css";
+@use "@ionic/angular/css/display.css";
 
-/* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+/* Optional CSS utils */
+@use "@ionic/angular/css/padding.css";
+@use "@ionic/angular/css/float-elements.css";
+@use "@ionic/angular/css/text-alignment.css";
+@use "@ionic/angular/css/text-transformation.css";
+@use "@ionic/angular/css/flex-utils.css";
 
 /* Dark Mode - Always enabled for modern look */
-@import "@ionic/angular/css/palettes/dark.always.css";
+// @use "@ionic/angular/css/palettes/dark.always.css";
 
 /* =============================================================================
    OAKFINANCE CUSTOM GLOBAL STYLES
    ============================================================================= */
 
-// Import shared color variables from theme
-@import "theme/colors";
-
-// Typography variables
-$font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
-
 /* =============================================================================
-   BASE STYLES
+   BASE STYLES - DARK THEME (DEFAULT)
    ============================================================================= */
 
 ion-content {
-  --background: #{$oak-bg-dark};
+  --background: #{$dark-bg-dark};
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-content {
+    --background: #{$light-bg-light};
+  }
 }
 
 /* =============================================================================
    TYPOGRAPHY
    ============================================================================= */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: $font-weight-semibold;
-  color: $oak-text-primary;
+  color: $dark-text-primary;
 }
 
 p {
-  color: $oak-text-secondary;
+  color: $dark-text-secondary;
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $light-text-primary;
+  }
+
+  p {
+    color: $light-text-secondary;
+  }
 }
 
 /* =============================================================================
@@ -65,36 +82,60 @@ p {
    ============================================================================= */
 
 ion-card {
-  --background: #{$oak-bg-card};
+  --background: #{$dark-bg-card};
   border-radius: $radius-lg;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   margin: $spacing-md;
-  
+
   ion-card-header {
     padding: $spacing-md $spacing-md $spacing-sm;
   }
-  
+
   ion-card-content {
     padding: $spacing-sm $spacing-md $spacing-md;
   }
-  
+
   ion-card-title {
     font-size: 1.25rem;
     font-weight: $font-weight-semibold;
-    color: $oak-text-primary;
+    color: $dark-text-primary;
   }
-  
+
   ion-card-subtitle {
     font-size: 0.875rem;
-    color: $oak-text-secondary;
+    color: $dark-text-secondary;
     margin-top: $spacing-xs;
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-card {
+    --background: #{$light-bg-card};
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    ion-card-title {
+      color: $light-text-primary;
+    }
+
+    ion-card-subtitle {
+      color: $light-text-secondary;
+    }
   }
 }
 
 /* Modern summary/stats card style */
 .oak-stats-card {
-  background: linear-gradient(145deg, $oak-bg-card 0%, #1f1f1f 100%);
+  background: linear-gradient(145deg, $dark-bg-card 0%, $dark-bg-card-darker 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  .oak-stats-card {
+    background: linear-gradient(145deg, $light-bg-card 0%, $light-bg-card-darker 100%);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* =============================================================================
@@ -104,43 +145,44 @@ ion-card {
 ion-list {
   background: transparent;
   padding: 0;
-  
+
   ion-list-header {
     font-size: 0.75rem;
     font-weight: $font-weight-bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: $spacing-md $spacing-md $spacing-sm;
-    color: $oak-text-muted;
+    color: $dark-text-muted;
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-list ion-list-header {
+    color: $light-text-muted;
   }
 }
 
 ion-item {
-  --background: #{$oak-bg-card};
-  --background-hover: #{$oak-bg-elevated};
-  --background-activated: #{$oak-bg-elevated};
+  --background: #{$dark-bg-card};
+  --background-hover: #{$dark-bg-elevated};
+  --background-activated: #{$dark-bg-elevated};
   --border-color: transparent;
-  --inner-border-width: 0;
-  --padding-start: #{$spacing-md};
-  --padding-end: #{$spacing-md};
-  --min-height: 60px;
-  margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
-  
+
   ion-label {
     h2 {
       font-weight: $font-weight-medium;
       font-size: 1rem;
-      color: $oak-text-primary;
-      margin-bottom: 2px;
+      color: $dark-text-primary;
     }
-    
+
     p {
       font-size: 0.8125rem;
-      color: $oak-text-secondary;
+      color: $dark-text-secondary;
     }
   }
-  
+
   ion-icon[slot="start"] {
     font-size: 1.5rem;
     margin-right: $spacing-md;
@@ -150,25 +192,40 @@ ion-item {
   }
 }
 
+:root[data-theme="light"],
+:root.light-theme {
+  ion-item {
+    --background: #{$light-bg-card};
+    --background-hover: #{$light-bg-elevated};
+    --background-activated: #{$light-bg-elevated};
+
+    ion-label {
+      h2 {
+        color: $light-text-primary;
+      }
+
+      p {
+        color: $light-text-secondary;
+      }
+    }
+
+    ion-icon[slot="start"] {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
 // Swipe action styling
 ion-item-sliding {
-  margin: 0 $spacing-md $spacing-sm;
   border-radius: $radius-md;
-  overflow: hidden;
-  
+  margin-bottom: $spacing-md;
+
   ion-item {
-    margin: 0;
     border-radius: 0;
   }
 }
 
-ion-item-options {
-  border-radius: 0 $radius-md $radius-md 0;
-  
-  ion-item-option {
-    font-weight: $font-weight-medium;
-  }
-}
+
 
 /* =============================================================================
    BADGES
@@ -179,25 +236,42 @@ ion-badge {
   border-radius: $radius-sm;
   font-weight: $font-weight-semibold;
   font-size: 0.875rem;
-  
+
   &[color="success"] {
     background: rgba($oak-green, 0.15);
-    color: $oak-green;
+    color: $dark-success;
   }
-  
+
   &[color="danger"] {
-    background: rgba($oak-danger, 0.15);
-    color: $oak-danger;
+    background: rgba(229, 115, 115, 0.15);
+    color: $dark-danger;
   }
-  
+
   &[color="warning"] {
     background: rgba($oak-yellow, 0.15);
-    color: $oak-yellow;
+    color: $dark-warning;
   }
-  
+
   &[color="primary"] {
     background: rgba($oak-green, 0.15);
     color: $oak-green;
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-badge {
+    &[color="success"] {
+      color: $light-success;
+    }
+
+    &[color="danger"] {
+      color: $light-danger;
+    }
+
+    &[color="warning"] {
+      color: $light-warning;
+    }
   }
 }
 
@@ -206,15 +280,22 @@ ion-badge {
    ============================================================================= */
 
 ion-toolbar {
-  --background: #{$oak-bg-dark};
+  --background: #{$dark-bg-dark};
   --border-width: 0;
-  --padding-top: $spacing-sm;
-  --padding-bottom: $spacing-sm;
-  
+  --padding-top: #{$spacing-sm};
+  --padding-bottom: #{$spacing-sm};
+
   ion-title {
     font-weight: $font-weight-semibold;
     font-size: 1.125rem;
     letter-spacing: -0.25px;
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-toolbar {
+    --background: #{$light-bg-card};
   }
 }
 
@@ -229,15 +310,13 @@ ion-header {
    ============================================================================= */
 
 ion-segment {
-  --background: #{$oak-bg-input};
-  border-radius: $radius-md;
+  --background: #{$dark-bg-input};
   padding: $spacing-xs;
-  margin: 0 $spacing-md;
-  
+
   ion-segment-button {
     --background: transparent;
     --background-checked: #{$oak-green};
-    --color: #{$oak-text-secondary};
+    --color: #{$dark-text-secondary};
     --color-checked: #000000;
     --indicator-color: transparent;
     --border-radius: #{$radius-sm};
@@ -248,9 +327,21 @@ ion-segment {
     font-size: 0.875rem;
     text-transform: none;
     letter-spacing: 0;
-    
+
     &::part(indicator-background) {
       background: transparent;
+    }
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-segment {
+    --background: #{$light-bg-input};
+
+    ion-segment-button {
+      --color: #{$light-text-secondary};
+      --color-checked: #{$dark-text-primary};
     }
   }
 }
@@ -260,31 +351,43 @@ ion-segment {
    ============================================================================= */
 
 ion-tab-bar {
-  --background: #{$oak-bg-card};
+  --background: #{$dark-bg-card};
   --border: none;
   height: 60px;
   padding-bottom: env(safe-area-inset-bottom);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
-  
+
   ion-tab-button {
-    --color: #{$oak-text-muted};
+    --color: #{$dark-text-muted};
     --color-selected: #{$oak-green};
-    
+
     ion-icon {
       font-size: 1.375rem;
       margin-bottom: $spacing-xs;
     }
-    
+
     ion-label {
       font-size: 0.6875rem;
       font-weight: $font-weight-medium;
       letter-spacing: 0.25px;
     }
-    
+
     &.tab-selected {
       ion-icon {
         transform: scale(1.1);
       }
+    }
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-tab-bar {
+    --background: #{$light-bg-card};
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+
+    ion-tab-button {
+      --color: #{$light-text-muted};
     }
   }
 }
@@ -300,7 +403,7 @@ ion-button {
   font-weight: $font-weight-semibold;
   letter-spacing: 0;
   text-transform: none;
-  
+
   &[expand="block"] {
     margin: $spacing-md;
   }
@@ -309,12 +412,20 @@ ion-button {
 /* FAB Button */
 ion-fab-button {
   --background: #{$oak-green};
-  --background-activated: #4a9b85;
+  --background-activated: #{$dark-green-activated};
   --color: #000000;
-  --box-shadow: 0 4px 16px rgba($oak-green, 0.4);
-  
+  --box-shadow: 0 4px 16px rgba(92, 178, 153, 0.4);
+
   &:hover {
-    --box-shadow: 0 6px 20px rgba($oak-green, 0.5);
+    --box-shadow: 0 6px 20px rgba(92, 178, 153, 0.5);
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-fab-button {
+    --background-activated: #{$light-green-activated};
+    --color: #{$dark-text-primary};
   }
 }
 
@@ -322,23 +433,45 @@ ion-fab-button {
    INPUTS & FORMS
    ============================================================================= */
 
-ion-input, ion-textarea, ion-select {
-  --background: #{$oak-bg-input};
-  --color: #{$oak-text-primary};
-  --placeholder-color: #{$oak-text-muted};
+ion-input,
+ion-textarea,
+ion-select {
+  --background: #{$dark-bg-input};
+  --color: #{$dark-text-primary};
+  --placeholder-color: #{$dark-text-muted};
   --padding-start: #{$spacing-md};
   --padding-end: #{$spacing-md};
   border-radius: $radius-md;
 }
 
+:root[data-theme="light"],
+:root.light-theme {
+
+  ion-input,
+  ion-textarea,
+  ion-select {
+    --background: transparent;
+    --color: #{$light-text-primary};
+    --placeholder-color: #{$light-text-muted};
+  }
+}
+
 ion-checkbox {
-  --background: #{$oak-bg-input};
+  --background: #{$dark-bg-input};
   --background-checked: #{$oak-green};
-  --border-color: #{$oak-bg-elevated};
+  --border-color: #{$dark-bg-elevated};
   --border-color-checked: #{$oak-green};
   --checkmark-color: #000000;
   --size: 22px;
   --border-radius: 6px;
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-checkbox {
+    --background: #{$light-bg-input};
+    --border-color: #{$light-bg-elevated};
+  }
 }
 
 /* =============================================================================
@@ -346,32 +479,215 @@ ion-checkbox {
    ============================================================================= */
 
 ion-footer {
-  background: $oak-bg-card;
+  background: $dark-bg-card;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
-  
+
   &::before {
     display: none; // Remove top border
   }
-  
+
   ion-toolbar {
     --background: transparent;
   }
 }
 
+:root[data-theme="light"],
+:root.light-theme {
+  ion-footer {
+    background: $light-bg-card;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
 /* =============================================================================
-   MODAL
+   MODAL * ALERT
    ============================================================================= */
 
 ion-modal {
-  --background: #{$oak-bg-dark};
+  --background: #{$dark-bg-dark};
   --border-radius: #{$radius-xl} #{$radius-xl} 0 0;
-  
+
   ion-toolbar {
-    --background: #{$oak-bg-dark};
+    --background: #{$dark-bg-dark};
   }
-  
+
   ion-content {
-    --background: #{$oak-bg-dark};
+    --background: #{$dark-bg-dark};
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-modal {
+    --background: #{$light-bg-card};
+
+    ion-toolbar {
+      --background: #{$light-bg-card};
+    }
+
+    ion-content {
+      --background: #{$light-bg-light};
+    }
+  }
+}
+
+ion-alert {
+
+  .alert-radio-label,
+  .alert-checkbox-label {
+    color: #{$dark-text-primary} !important;
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+
+  .alert-radio-label,
+  .alert-checkbox-label {
+    color: #{$light-text-primary} !important;
+  }
+}
+
+
+
+/* =============================================================================
+   ALERT (iOS & MD)
+   ============================================================================= */
+
+ion-alert {
+  --background: #{$dark-bg-card} !important;
+  --max-width: 320px;
+
+  .alert-wrapper {
+    background: $dark-bg-card !important;
+    border-radius: $radius-lg;
+  }
+
+  .alert-head {
+    padding: $spacing-md $spacing-md $spacing-sm;
+
+    .alert-title {
+      color: $dark-text-primary !important;
+      font-weight: $font-weight-semibold;
+      font-size: 1.125rem;
+    }
+
+    .alert-sub-title {
+      color: $dark-text-secondary;
+      font-size: 0.875rem;
+    }
+  }
+
+  .alert-message {
+    color: $dark-text-secondary;
+    padding: 0 $spacing-md $spacing-sm;
+    font-size: 0.9375rem;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  .alert-radio-label,
+  .alert-checkbox-label {
+    padding: $spacing-md;
+    color: $dark-text-primary;
+    font-size: 1rem;
+
+    .alert-radio-icon,
+    .alert-checkbox-icon {
+      border-color: rgba(255, 255, 255, 0.3);
+      border-width: 2px;
+      width: 20px;
+      height: 20px;
+      margin-inline-end: $spacing-md;
+    }
+
+    .alert-radio-inner {
+      background-color: $oak-green;
+    }
+
+    &[aria-checked="true"] {
+      .alert-radio-icon {
+        border-color: $oak-green;
+      }
+
+      .alert-checkbox-icon {
+        border-color: $oak-green;
+        background-color: $oak-green;
+
+        .alert-checkbox-inner {
+          border-color: #000000;
+        }
+      }
+    }
+  }
+
+  .alert-input-wrapper {
+    .alert-input {
+      background: $dark-bg-input;
+      color: $dark-text-primary;
+      border-radius: $radius-sm;
+      padding-left: $spacing-md;
+
+      &::placeholder {
+        color: $dark-text-muted;
+      }
+    }
+  }
+
+
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  ion-alert {
+    --background: #{$light-bg-card} !important;
+
+    .alert-wrapper {
+      background: $light-bg-card !important;
+    }
+
+    .alert-head {
+      .alert-title {
+        color: $light-text-primary !important;
+      }
+
+      .alert-sub-title {
+        color: $light-text-secondary;
+      }
+    }
+
+    .alert-message {
+      color: $light-text-secondary;
+    }
+
+    .alert-radio-label,
+    .alert-checkbox-label {
+      color: $light-text-primary;
+
+      .alert-radio-icon,
+      .alert-checkbox-icon {
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+
+      &[aria-checked="true"] {
+        .alert-checkbox-icon .alert-checkbox-inner {
+          border-color: #ffffff;
+        }
+      }
+    }
+
+    .alert-input-wrapper {
+      .alert-input {
+        background: $light-bg-input;
+        color: $light-text-primary;
+
+        &::placeholder {
+          color: $light-text-muted;
+        }
+      }
+    }
+
+
   }
 }
 
@@ -384,27 +700,44 @@ ion-modal {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: $spacing-xl * 2 $spacing-lg;
+  padding: calc(#{$spacing-xl} * 2) $spacing-lg;
   text-align: center;
-  
+
   ion-icon {
     font-size: 80px;
-    color: $oak-text-muted;
+    color: $dark-text-muted;
     margin-bottom: $spacing-lg;
     opacity: 0.5;
   }
-  
+
   p {
     font-size: 1.125rem;
     font-weight: $font-weight-medium;
-    color: $oak-text-primary;
+    color: $dark-text-primary;
     margin: $spacing-sm 0;
   }
-  
+
   ion-text p {
     font-size: 0.875rem;
-    color: $oak-text-secondary;
+    color: $dark-text-secondary;
     margin: $spacing-xs 0;
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  .empty-state {
+    ion-icon {
+      color: $light-text-muted;
+    }
+
+    p {
+      color: $light-text-primary;
+    }
+
+    ion-text p {
+      color: $light-text-secondary;
+    }
   }
 }
 
@@ -412,50 +745,34 @@ ion-modal {
    UTILITY CLASSES
    ============================================================================= */
 
-.text-success {
-  color: $oak-green !important;
-}
-
-.text-danger {
-  color: $oak-danger !important;
-}
-
-.text-warning {
-  color: $oak-yellow !important;
-}
-
-.text-muted {
-  color: $oak-text-muted !important;
-}
-
-.text-secondary {
-  color: $oak-text-secondary !important;
-}
-
-.bg-card {
-  background: $oak-bg-card !important;
-}
-
-.bg-elevated {
-  background: $oak-bg-elevated !important;
-}
 
 /* Currency/Amount display helpers */
 .amount-positive {
-  color: $oak-green;
+  color: $dark-success;
   font-weight: $font-weight-semibold;
-  
+
   &::before {
     content: '+';
   }
 }
 
 .amount-negative {
-  color: $oak-danger;
+  color: $dark-danger;
   font-weight: $font-weight-semibold;
-  
+
   &::before {
     content: '-';
+  }
+}
+
+:root[data-theme="light"],
+:root.light-theme {
+  .amount-positive {
+    color: $light-success;
+  }
+
+  .amount-negative {
+    color: $light-danger;
   }
 }
 
@@ -464,8 +781,15 @@ ion-modal {
    ============================================================================= */
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
@@ -474,8 +798,15 @@ ion-modal {
 
 /* Subtle pulse animation for important values */
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 .animate-pulse {
