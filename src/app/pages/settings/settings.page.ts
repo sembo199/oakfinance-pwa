@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
-import { SettingsService } from '../services/settings.service';
-import { TranslationService } from '../services/translation.service';
-import { AppSettings, Language } from '../models';
-import { CURRENCIES } from '../constants/currencies';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { SettingsService } from '../../services/settings.service';
+import { TranslationService } from '../../services/translation.service';
+import { AppSettings, Language } from '../../models';
+import { CURRENCIES } from '../../constants/currencies';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  selector: 'app-settings',
+  templateUrl: 'settings.page.html',
+  styleUrls: ['settings.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, TranslatePipe],
 })
-export class Tab3Page implements OnInit {
+export class Settings implements OnInit {
   Language = Language;
-  
+
   settings: AppSettings = {
     monthStartDay: 1,
     currency: 'USD',
